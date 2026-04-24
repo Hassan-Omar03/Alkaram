@@ -56,26 +56,21 @@ import Layout from '../layouts/Layout.astro';
       <a href="#contact" class="btn btn-outline">Get In Touch</a>
     </div>
     <div class="hero-stats">
-      <div class="stat">
+      <div class="stat glass-stat">
         <span class="stat-num" data-target="500">0</span><span class="stat-plus">+</span>
         <span class="stat-label">Properties Sold</span>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
+      <div class="stat glass-stat">
         <span class="stat-num" data-target="1800">0</span><span class="stat-plus">+</span>
         <span class="stat-label">Happy Clients</span>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
+      <div class="stat glass-stat">
         <span class="stat-num" data-target="4">0</span><span class="stat-plus">+</span>
         <span class="stat-label">Years of Trust</span>
       </div>
     </div>
   </div>
-  <div class="scroll-indicator">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
+ 
 </section>
 
 <!-- ==================== MARQUEE TICKER ==================== -->
@@ -225,6 +220,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <h3>Sale & Purchase</h3>
         <p>Complete assistance in buying and selling residential & commercial plots across all blocks in Al Jalil Garden Housing Scheme.</p>
+        <a href="#contact" class="service-link">Get In Touch →</a>
         <div class="service-line"></div>
       </div>
       <div class="service-card tilt-card">
@@ -235,6 +231,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <h3>Property Marketing</h3>
         <p>Strategic marketing campaigns to sell your property faster. We leverage our network of 1800+ clients for maximum exposure and best returns.</p>
+        <a href="#contact" class="service-link">Get In Touch →</a>
         <div class="service-line"></div>
       </div>
       <div class="service-card tilt-card">
@@ -245,6 +242,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <h3>File Verification</h3>
         <p>Thorough verification of all property documentation and ownership history. We ensure every transaction is legally sound and fully transparent.</p>
+        <a href="#contact" class="service-link">Get In Touch →</a>
         <div class="service-line"></div>
       </div>
       <div class="service-card tilt-card">
@@ -987,6 +985,22 @@ body.aurora-active .cursor-aurora {
   flex-wrap: wrap;
 }
 .stat { text-align: center; }
+.glass-stat {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 16px;
+  padding: 20px 32px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 4px 24px rgba(0,0,0,0.3);
+  position: relative;
+}
+.glass-stat::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
+  pointer-events: none;
+}
 .stat-num {
   font-family: var(--font-heading);
   font-size: 2.5rem;
@@ -1351,8 +1365,8 @@ body.aurora-active .cursor-aurora {
   gap: 24px;
 }
 .service-card {
-  background: rgba(17, 30, 52, 0.55);
-  border: 1px solid rgba(90, 157, 224, 0.14);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.16);
   padding: 40px 28px;
   transition: border-color var(--transition-medium), box-shadow var(--transition-medium);
   position: relative;
@@ -1360,7 +1374,7 @@ body.aurora-active .cursor-aurora {
   border-radius: 18px;
   backdrop-filter: blur(18px) saturate(1.5);
   -webkit-backdrop-filter: blur(18px) saturate(1.5);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.06);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 8px 32px rgba(0,0,0,0.28);
   animation: floatCard 4s ease-in-out infinite;
 }
 .service-card:nth-child(1) { animation-delay: 0s; }
@@ -1592,9 +1606,9 @@ body.aurora-active .cursor-aurora {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #27ae60;
-  background: rgba(39,174,96,0.15);
-  border: 1px solid rgba(39,174,96,0.4);
+  color: #ff6b35;
+  background: rgba(255,107,53,0.2);
+  border: 1px solid rgba(255,107,53,0.6);
   padding: 3px 8px;
   border-radius: 20px;
   align-self: flex-start;
@@ -1760,7 +1774,6 @@ body.aurora-active .cursor-aurora {
 #blocks {
   background: linear-gradient(180deg, var(--navy-2) 0%, var(--navy-3) 100%);
   position: relative;
-  overflow: hidden;
 }
 #blocks::before {
   content: '';
@@ -1784,8 +1797,8 @@ body.aurora-active .cursor-aurora {
   margin-bottom: 50px;
 }
 .block-card {
-  background: linear-gradient(145deg, var(--navy-3), var(--navy-4));
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -1794,8 +1807,10 @@ body.aurora-active .cursor-aurora {
   gap: 12px;
   transition: border-color var(--transition-medium), box-shadow var(--transition-medium);
   position: relative;
-  overflow: hidden;
   border-radius: 16px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 24px rgba(0,0,0,0.25);
   animation: floatBlock 4.5s ease-in-out infinite;
 }
 .block-card:nth-child(1) { animation-delay: 0s; }
@@ -1831,8 +1846,9 @@ body.aurora-active .cursor-aurora {
   color: var(--white);
 }
 .block-card.featured {
-  border-color: rgba(61,126,199,0.25);
-  background: linear-gradient(145deg, var(--navy-3), rgba(61,126,199,0.08));
+  background: rgba(61,126,199,0.15);
+  border-color: rgba(61,126,199,0.4);
+  box-shadow: inset 0 1px 0 rgba(90,157,224,0.2), 0 4px 24px rgba(61,126,199,0.15);
 }
 .block-name {
   font-family: var(--font-heading);
@@ -2327,16 +2343,35 @@ body.aurora-active .cursor-aurora {
   .hero-stats { gap: 20px; }
   .stat-divider { display: none; }
   .contact-form-wrap { padding: 30px 20px; }
+  /* Hero buttons equal width on mobile */
+  .hero-btns { flex-direction: row; gap: 12px; }
+  .hero-btns .btn { flex: 1; justify-content: center; text-align: center; font-size: 0.75rem; padding: 14px 10px; }
+  /* Stats in one row */
+  .hero-stats { flex-wrap: nowrap; gap: 0; justify-content: space-around; width: 100%; }
+  .stat-divider { display: block; width: 1px; height: 40px; background: rgba(61,126,199,0.2); }
+  .stat-num { font-size: 1.6rem; }
+  .stat-plus { font-size: 1rem; }
+  .stat-label { font-size: 0.6rem; letter-spacing: 1px; }
+  /* Plot cards responsive */
+  .project-plots { grid-template-columns: repeat(3, 1fr); }
+  .plot-card { height: 140px; }
+  .plot-card-num { font-size: 2rem; }
+  /* Available badge — use orange/red for visibility */
+  .plot-card-badge { color: #ff6b35; background: rgba(255,107,53,0.15); border-color: rgba(255,107,53,0.5); }
+  /* Project main padding */
+  .project-main { padding: 24px; }
 }
 @media (max-width: 480px) {
   .amenities-grid-mini { grid-template-columns: repeat(2, 1fr); }
   .blocks-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero-btns { flex-direction: column; align-items: center; }
+  .hero-btns { flex-direction: row; gap: 10px; }
+  .hero-btns .btn { flex: 1; font-size: 0.7rem; padding: 12px 8px; }
+  .project-plots { grid-template-columns: repeat(2, 1fr); }
+  .plot-card { height: 130px; }
 }
 
 .cinematic-section {
   position: relative;
-  overflow: hidden;
   isolation: isolate;
 }
 .cinematic-section::before,
@@ -2403,7 +2438,7 @@ body.aurora-active .cursor-aurora {
 .reveal {
   opacity: 0;
   transform: translateY(35px);
-  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .reveal.visible {
   opacity: 1;
@@ -2487,13 +2522,14 @@ body.aurora-active .cursor-aurora {
 
 /* ===== MARQUEE TICKER ===== */
 .marquee-strip {
-  background: linear-gradient(90deg, var(--navy-2), var(--navy-3), var(--navy-2));
-  border-top: 1px solid rgba(61,126,199,0.12);
-  border-bottom: 1px solid rgba(61,126,199,0.12);
+  background: rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
   overflow: hidden;
   padding: 14px 0;
   position: relative;
   z-index: 5;
+  margin-top: 24px;
 }
 .marquee-strip::before,
 .marquee-strip::after {
@@ -2710,13 +2746,30 @@ body.aurora-active .cursor-aurora {
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* ===== GLASS PANEL UPGRADE ===== */
-.glass-card {
-  background: rgba(12, 21, 38, 0.6);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  border: 1px solid rgba(90,157,224,0.12);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+/* ===== GLASS MORPHISM — ALL BOXES ===== */
+/* Identical to hero badge: rgba(255,255,255,0.05) bg + rgba(255,255,255,0.2) border + backdrop-filter blur(8px) */
+.btn-outline,
+.about-card-inner,
+.service-card,
+.block-card,
+.size-tag,
+.testimonial-card,
+.payment-card,
+.project-main,
+.project-amenities,
+.amenity-mini,
+.contact-form-wrap,
+.contact-icon,
+.ceo-frame {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 24px rgba(0,0,0,0.25) !important;
+}
+.block-card.featured {
+  background: rgba(61,126,199,0.08) !important;
+  border-color: rgba(61,126,199,0.35) !important;
 }
 
 /* ===== SECTION DIVIDERS ===== */
@@ -3225,29 +3278,21 @@ document.addEventListener('DOMContentLoaded', () => {
   statNums.forEach(el => counterObserver.observe(el));
 
   // === SCROLL REVEAL ===
+  // === SCROLL REVEAL ===
   const revealEls = document.querySelectorAll(
     '.hero-badge, .hero-title, .hero-desc, .hero-btns, .hero-stats, .section-label, .section-title, .accent-line, .section-desc, .about-features, .about-card, .service-card, .project-main, .project-amenities, .block-card, .payment-card, .amenity-mini, .contact-item, .contact-form-wrap, .size-tag, .tour-cta-content'
   );
   revealEls.forEach(el => el.classList.add('reveal'));
-  let revealQueue: Element[] = [];
-  let revealRunning = false;
-  function processRevealQueue() {
-    if (revealRunning || revealQueue.length === 0) return;
-    revealRunning = true;
-    const el = revealQueue.shift()!;
-    el.classList.add('visible');
-    setTimeout(() => { revealRunning = false; processRevealQueue(); }, 80);
-  }
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        revealQueue.push(entry.target);
-        processRevealQueue();
+        (entry.target as HTMLElement).classList.add('visible');
         revealObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.05 });
   revealEls.forEach(el => revealObserver.observe(el));
+
   document.getElementById('contactForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const btn = (e.target as HTMLFormElement).querySelector('button[type="submit"]') as HTMLButtonElement;
@@ -3270,22 +3315,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // === ABOUT + BLOCKS HEADING: scroll-linked scale via Motion.dev scroll() ===
-  if (!prefersReducedMotion) {
-    ['about', 'blocks'].forEach((id) => {
-      const sec = document.getElementById(id);
-      const el = sec ? (sec.querySelector('.section-title') as HTMLElement) : null;
-      if (!sec || !el) return;
-      el.style.transformOrigin = 'left center';
-      el.style.willChange = 'transform';
-      scroll(
-        animate(el, { scale: [1, 1.12, 1] }, { duration: 1, easing: 'ease-in-out' }),
-        { target: sec, offset: ['start end', 'end start'] }
-      );
-    });
-  }
-
-  // ============================================================
+  // ===   // ============================================================
   // === MOTION.DEV (FRAMER MOTION VANILLA) SCROLL ANIMATIONS ===
   // ============================================================
   if (!prefersReducedMotion) {
