@@ -58,7 +58,7 @@ img {
 }
 
 .section {
-  padding: 100px 5%;
+  padding: 72px 5%;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -79,7 +79,7 @@ img {
   font-weight: 600;
   line-height: 1.14;
   letter-spacing: 0.01em;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
   color: var(--white);
 }
 
@@ -95,7 +95,7 @@ img {
   width: 60px;
   height: 3px;
   background: linear-gradient(90deg, var(--blue), var(--blue-light));
-  margin: 24px 0;
+  margin: 8px 0 14px;
   border-radius: 2px;
 }
 

@@ -1,4 +1,4 @@
-﻿---
+---
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -268,7 +268,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="tour-cta-content">
       <span class="section-label">Immersive Experience</span>
       <h2 class="section-title">Explore Al Jalil Garden in 360°</h2>
-      <p class="section-desc" style="max-width:550px; margin: 0 auto 36px;">Walk through the streets, parks, and amenities of Al Jalil Garden without leaving your home. Our interactive virtual tour lets you experience every detail.</p>
+      <p class="section-desc" style="max-width:780px; margin: 0 auto 36px;">Walk through the streets, parks, and amenities of Al Jalil Garden without leaving your home. Our interactive virtual tour lets you experience every detail.</p>
       <a href="http://myajdcloud.com/vtour/ajg.html" target="_blank" class="btn btn-tour">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
         Launch Virtual Tour
@@ -446,7 +446,7 @@ import Layout from '../layouts/Layout.astro';
       <p class="section-desc">Plots available across multiple premium blocks in Al Jalil Garden. Prices vary according to size and location. Contact us for the latest pricing and availability.</p>
     </div>
     <div class="blocks-grid">
-      <div class="block-card featured">
+      <div class="block-card">
         <div class="block-glow"></div>
         <span class="block-name">Rose</span>
         <span class="block-status available">Available</span>
@@ -1785,7 +1785,7 @@ body.aurora-active .cursor-aurora {
 .blocks-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 40px;
   margin-bottom: 50px;
 }
@@ -2762,10 +2762,10 @@ body.aurora-active .cursor-aurora {
 .contact-icon,
 .ceo-frame {
   background: rgba(255,255,255,0.05) !important;
-  border: 1px solid rgba(255,255,255,0.2) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 24px rgba(0,0,0,0.25) !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  backdrop-filter: blur(3px) !important;
+  -webkit-backdrop-filter: blur(3px) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 20px rgba(0,0,0,0.2) !important;
 }
 .block-card.featured {
   background: rgba(61,126,199,0.08) !important;
@@ -2862,6 +2862,415 @@ body.cursor-card #cursor-dot { width: 10px; height: 10px; background: var(--blue
 body.cursor-card #cursor-ring { width: 50px; height: 50px; border-color: rgba(90,157,224,0.5); border-radius: 14px; background: rgba(61,126,199,0.05); }
 body.cursor-link #cursor-ring { width: 44px; height: 44px; border-color: var(--gold); background: rgba(212,168,67,0.05); }
 @media (max-width: 768px) { #cursor-dot, #cursor-ring { display: none; } }
+
+/* ===================================================================
+   TARGETED SECTION HEADER FIXES
+   =================================================================== */
+
+/* ── WHO WE ARE ──
+   Label: text-align center
+   Heading: bigger font
+   Accent-line: tighter gap after heading                             */
+#about .about-left .section-label {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 4px;
+}
+#about .about-left .section-title {
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  margin-bottom: 8px;
+}
+#about .about-left .accent-line {
+  margin-top: 6px;              /* was 24px → much tighter now       */
+}
+
+/* ── LEADERSHIP ──
+   Label: centered + slightly larger
+   Heading (name): stays left-aligned, bigger size                   */
+#ceo .ceo-info .section-label {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 4px;
+}
+#ceo .ceo-info .section-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+}
+#ceo .ceo-info .accent-line {
+  margin-top: 6px;
+}
+
+/* ── SERVICES ──
+   Label: text-align center
+   Heading "Our Services": left-aligned (default)                    */
+#services .services-header .section-label {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 4px;
+}
+#services .services-header .section-title { text-align: left; }
+#services .services-header .accent-line { margin-top: 6px; }
+
+/* ── IMMERSIVE EXPERIENCE (Tour CTA) ── */
+#tour-cta .tour-cta-content .section-label {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 4px;
+}
+#tour-cta .tour-cta-content .section-title { text-align: left; }
+
+/* ── OUR PROJECT ── */
+#projects > .section > .section-label {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 4px;
+}
+#projects > .section > .section-title {
+  text-align: left;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  margin-bottom: 8px;
+}
+#projects > .section > .accent-line { margin-top: 6px; }
+.project-actions { justify-content: center; }
+
+/* ── LIFESTYLE (Amenities label) ── */
+.amenities-label {
+  display: block;
+  text-align: center;
+  font-size: 0.85rem !important;
+  letter-spacing: 4px;
+}
+
+/* ── AVAILABLE BLOCKS ──
+   Label: centered + bigger
+   Description: vertically aligned with heading (align-items: center) */
+#blocks .blocks-header > div > .section-label {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 4px;
+}
+.blocks-header { align-items: flex-start; }
+.blocks-header .section-desc { text-align: left; margin-bottom: 0; }
+/* Tighten space between accent-line and blocks grid */
+#blocks .blocks-header { margin-bottom: 28px; }
+#blocks .blocks-header .accent-line { margin-bottom: 0; }
+
+/* ── EASY FINANCING (Payment label) ── */
+#payment .section-label {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 4px;
+}
+
+/* ── CLIENT STORIES (Testimonials) ──
+   Label: centered + bigger
+   Heading "Trusted by 1,800+": left-aligned
+   Accent-line: left-aligned                                         */
+#testimonials .testimonials-header .section-label {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 4px;
+}
+#testimonials .testimonials-header .section-title { display: block; text-align: left; }
+.testimonials-header .accent-line {
+  margin-left: 0;
+  margin-right: auto;
+  margin-top: 6px;
+}
+
+/* ── GET IN TOUCH (Contact label) ── */
+#contact .contact-info .section-label {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 4px;
+}
+
+/* ── ANIMATION OVERHAUL ──
+   Remove slow curtain reveal; keep all text visible immediately    */
+.section-title::after { display: none !important; }
+
+/* Remove initial hidden states — text always visible */
+#ceo .ceo-frame,
+#ceo .ceo-role,
+#ceo .ceo-value,
+#ceo .value-icon,
+#ceo .ceo-info .section-title,
+#testimonials .testimonials-header h2,
+#testimonials .testimonials-header .section-label,
+#testimonials .testimonials-header .accent-line,
+#testimonials .testimonial-card {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Fast reveal — 0.15s snap-in instead of 0.4s slow rise */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ── FAST CSS TEXT ANIMATIONS (play immediately, no scroll delay) ── */
+@keyframes hdrUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes hdrDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes lineGrow {
+  from { transform: scaleX(0); opacity: 0; transform-origin: left; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+@keyframes labelShimmer {
+  0%,100% { color: var(--blue-light); }
+  50%     { color: var(--blue-lighter); text-shadow: 0 0 10px rgba(139,190,240,0.5); }
+}
+@keyframes accentShimmer {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+@keyframes accentPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(61,126,199,0); }
+  50%     { box-shadow: 0 0 6px 2px rgba(61,126,199,0.3); }
+}
+
+/* Section label: fast drop-in + periodic shimmer */
+.section-label {
+  animation: hdrDown 0.22s ease both, labelShimmer 3s ease 0.8s infinite;
+}
+/* Section title: fast rise */
+.section-title  { animation: hdrUp 0.25s ease 0.05s both; }
+.section-title:hover { text-shadow: 0 2px 20px rgba(255,255,255,0.1); transition: text-shadow 0.3s ease; }
+/* Section desc: fast rise with slight delay */
+.section-desc   { animation: hdrUp 0.25s ease 0.09s both; }
+/* Accent-line: grow left-to-right + moving gradient + pulse glow */
+.accent-line {
+  background-size: 200% 100%;
+  background-image: linear-gradient(90deg, var(--blue), var(--blue-lighter), var(--blue));
+  animation: lineGrow 0.28s ease 0.07s both, accentShimmer 2.5s linear 0.5s infinite, accentPulse 3s ease 0.5s infinite;
+}
+
+/* ── ENHANCED CARD HOVER GLOWS ── */
+.service-card { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important; }
+.service-card:hover {
+  transform: translateY(-7px) !important;
+  box-shadow: 0 12px 40px rgba(61,126,199,0.25), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+  border-color: rgba(61,126,199,0.45) !important;
+}
+.block-card { transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important; }
+.block-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 10px 32px rgba(61,126,199,0.2) !important;
+  border-color: rgba(61,126,199,0.4) !important;
+}
+.about-card-inner:hover {
+  box-shadow: 0 8px 28px rgba(61,126,199,0.18) !important;
+  border-color: rgba(61,126,199,0.3) !important;
+}
+/* Project main hover */
+.project-main:hover {
+  box-shadow: 0 8px 32px rgba(61,126,199,0.15) !important;
+}
+
+/* ================================================================
+   SECTION BEAUTY ENHANCEMENTS
+   ================================================================ */
+
+/* Animated underline on section-title hover */
+.section-title { position: relative; }
+.section-title::before {
+  content: ''; position: absolute; bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: linear-gradient(90deg, var(--blue-light), transparent);
+  transition: width 0.5s ease;
+}
+.section-title:hover::before { width: 100%; }
+
+/* ABOUT: Float card + feature hover */
+@keyframes floatCard { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+#about .about-right { animation: floatCard 5s ease-in-out infinite; }
+#about .about-feature {
+  border-left: 2px solid transparent; padding-left: 10px;
+  transition: border-color 0.3s ease, padding-left 0.3s ease;
+}
+#about .about-feature:hover { border-left-color: var(--blue-light); padding-left: 14px; }
+#about .about-feature:hover .feature-icon {
+  transform: rotate(15deg) scale(1.15);
+  background: rgba(61,126,199,0.2); box-shadow: 0 0 12px rgba(61,126,199,0.3);
+}
+
+/* CEO: Float frame */
+@keyframes floatFrame { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+#ceo .ceo-frame {
+  animation: floatFrame 6s ease-in-out infinite;
+  border: 1px solid rgba(61,126,199,0.3) !important;
+  box-shadow: 0 0 30px rgba(61,126,199,0.1), inset 0 1px 0 rgba(255,255,255,0.08) !important;
+}
+#ceo .ceo-value { transition: transform 0.2s ease, background 0.2s ease; border-radius: 8px; padding: 4px 8px; }
+#ceo .ceo-value:hover { transform: translateX(6px); background: rgba(61,126,199,0.08); }
+
+/* SERVICES: Icon hover spin + card glow spot */
+#services .service-card { position: relative; overflow: hidden; }
+#services .service-card::after {
+  content: ''; position: absolute; top: -40%; left: -40%;
+  width: 80%; height: 80%;
+  background: radial-gradient(circle, rgba(61,126,199,0.07), transparent 70%);
+  opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+}
+#services .service-card:hover::after { opacity: 1; }
+#services .service-icon { transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease; }
+#services .service-card:hover .service-icon {
+  transform: rotate(-8deg) scale(1.15); box-shadow: 0 0 18px rgba(61,126,199,0.25);
+}
+
+/* TOUR CTA: Pulse glow + btn ripple */
+@keyframes ctaGlow {
+  0%,100% { box-shadow: inset 0 0 60px rgba(61,126,199,0.04); }
+  50%     { box-shadow: inset 0 0 100px rgba(61,126,199,0.10); }
+}
+#tour-cta { animation: ctaGlow 4s ease-in-out infinite; }
+@keyframes btnPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(61,126,199,0.45); }
+  70%  { box-shadow: 0 0 0 14px rgba(61,126,199,0); }
+  100% { box-shadow: 0 0 0 0 rgba(61,126,199,0); }
+}
+.btn-tour { animation: btnPulse 2.5s ease infinite; }
+
+/* PROJECTS: hover effects */
+.plot-tag { transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease; }
+.plot-tag:hover { transform: scale(1.08); background: rgba(61,126,199,0.18); }
+.amenity-mini { transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease; }
+.amenity-mini:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 8px 20px rgba(61,126,199,0.2); }
+
+/* BLOCKS: nth-child stagger + name glow */
+#blocks .block-card:nth-child(1) { transition-delay: 0.00s; }
+#blocks .block-card:nth-child(2) { transition-delay: 0.04s; }
+#blocks .block-card:nth-child(3) { transition-delay: 0.08s; }
+#blocks .block-card:nth-child(4) { transition-delay: 0.12s; }
+#blocks .block-card:nth-child(5) { transition-delay: 0.16s; }
+#blocks .block-card:nth-child(6) { transition-delay: 0.20s; }
+#blocks .block-card:nth-child(7) { transition-delay: 0.24s; }
+#blocks .block-card:nth-child(8) { transition-delay: 0.28s; }
+.block-name { transition: color 0.2s ease; }
+.block-card:hover .block-name { color: var(--blue-lighter); }
+
+/* PAYMENT: Shimmer border + feature hover */
+@keyframes borderSpin { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+#payment .payment-card { position: relative; }
+#payment .payment-card::before {
+  content: ''; position: absolute; inset: -1px; border-radius: inherit;
+  background: linear-gradient(90deg, var(--blue-dark), var(--blue-light), var(--gold), var(--blue-dark));
+  background-size: 200% 100%; animation: borderSpin 3s linear infinite;
+  z-index: -1; opacity: 0.35;
+}
+#payment .payment-features li { transition: transform 0.2s ease, color 0.2s ease; cursor: default; }
+#payment .payment-features li:hover { transform: translateX(6px); color: var(--white-soft); }
+
+/* TESTIMONIALS: Top border + star twinkle */
+.testimonial-card { position: relative; overflow: hidden; }
+.testimonial-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(61,126,199,0.5), transparent);
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.testimonial-card:hover::after { opacity: 1; }
+@keyframes starTwinkle {
+  0%,100% { filter: drop-shadow(0 0 3px rgba(212,168,67,0.4)); }
+  50%     { filter: drop-shadow(0 0 8px rgba(212,168,67,0.8)); }
+}
+.testimonial-stars { animation: starTwinkle 2s ease-in-out infinite; }
+
+/* CONTACT: Input focus glow + icon hover */
+.contact-form-wrap input:focus,
+.contact-form-wrap textarea:focus,
+.contact-form-wrap select:focus {
+  outline: none;
+  border-color: var(--blue-light) !important;
+  box-shadow: 0 0 0 3px rgba(61,126,199,0.15) !important;
+  background: rgba(61,126,199,0.04) !important;
+  transition: all 0.2s ease;
+}
+.contact-icon { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease; }
+.contact-item:hover .contact-icon { transform: scale(1.15) rotate(-5deg); box-shadow: 0 0 16px rgba(61,126,199,0.3); }
+
+/* WHATSAPP: opacity-only pulse (no box-shadow repaint) */
+@keyframes waPulse {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.72; }
+}
+.whatsapp-float { animation: waPulse 2s ease-in-out infinite !important; }
+
+/* =================================================================
+   PERFORMANCE: Strip expensive animations, use GPU-only replacements
+   ================================================================= */
+
+/* Accent-line: remove background-position shimmer + box-shadow pulse */
+.accent-line {
+  background-image: linear-gradient(90deg, var(--blue), var(--blue-lighter)) !important;
+  background-size: 100% 100% !important;
+  animation: lineGrow 0.28s ease 0.07s both !important;
+}
+
+/* section-label: use opacity pulse instead of color/text-shadow */
+@keyframes labelPulse { 0%,100% { opacity: 0.85; } 50% { opacity: 1; } }
+.section-label { animation: hdrDown 0.22s ease both, labelPulse 3s ease 0.8s infinite !important; }
+
+/* btn-tour + tour-cta: remove box-shadow animation */
+.btn-tour { animation: none !important; }
+#tour-cta { animation: none !important; }
+
+/* payment border: stop background-position animation */
+#payment .payment-card::before { animation: none !important; opacity: 0.28; }
+
+/* will-change for floating elements → GPU layer pre-promotion */
+#about .about-right { will-change: transform; }
+#ceo .ceo-frame     { will-change: transform; }
+
+/* =================================================================
+   SIZE TAGS: Fix readability — bright, high-contrast
+   ================================================================= */
+.size-tag {
+  background: rgba(61,126,199,0.12) !important;
+  border: 1px solid rgba(61,126,199,0.3) !important;
+}
+.size-val {
+  color: #ffffff !important;
+  font-family: var(--font-body) !important;
+  font-size: 2.4rem !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+  display: block !important;
+  line-height: 1.1 !important;
+}
+.size-unit {
+  color: var(--blue-lighter) !important;
+  opacity: 1 !important;
+  display: block !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 2px !important;
+}
+/* Plot card numbers (3, 5, 10, 15 Marla, 1 Kanal) */
+.plot-card-num {
+  font-family: var(--font-body) !important;
+  font-weight: 800 !important;
+}
+/* Hero stats numbers (500+, 1800+, 4+) */
+.stat-num {
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+}
 </style>
 
 
@@ -2887,18 +3296,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!prefersReducedMotion && window.innerWidth > 960) {
     const aurora = document.createElement('div');
     aurora.className = 'cursor-aurora';
+    aurora.style.transition = 'transform 0.12s linear';
     document.body.appendChild(aurora);
     document.body.classList.add('aurora-active');
-    let ax = pointerX;
-    let ay = pointerY;
-
-    const animateAurora = () => {
-      ax += (pointerX - ax) * 0.14;
-      ay += (pointerY - ay) * 0.14;
-      aurora.style.transform = `translate3d(${ax}px, ${ay}px, 0) translate(-50%, -50%)`;
-      requestAnimationFrame(animateAurora);
-    };
-    animateAurora();
+    document.addEventListener('mousemove', (e) => {
+      aurora.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+    });
   }
 
   // === CUSTOM MORPHING CURSOR ===
@@ -2914,12 +3317,15 @@ document.addEventListener('DOMContentLoaded', () => {
       ry += (e.clientY - ry) * 0.18;
     });
 
-    // Smooth ring following via rAF
-    const followRing = () => {
-      if (ring) ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+    let ringLast = 0;
+    const followRing = (now: number) => {
+      if (now - ringLast >= 33) { // ~30fps
+        ringLast = now;
+        if (ring) ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      }
       requestAnimationFrame(followRing);
     };
-    followRing();
+    requestAnimationFrame(followRing);
 
     // Morph states
     const setBtnCursor = () => { document.body.classList.add('cursor-btn'); document.body.classList.remove('cursor-card','cursor-link'); };
@@ -2996,14 +3402,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x070e1a, 0.018);
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 120);
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.0));
     renderer.setClearColor(0x000000, 0);
 
     // ── LAYER 1: Far nebula cloud (5000 pts, tiny) ──
     const farGeo = new THREE.BufferGeometry();
-    const farCount = 5000;
+    const farCount = 1500;
     const farPos = new Float32Array(farCount * 3);
     const farCol = new Float32Array(farCount * 3);
     const farSizes = new Float32Array(farCount);
@@ -3029,7 +3435,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── LAYER 2: Mid particles (1200 pts, brighter) ──
     const midGeo = new THREE.BufferGeometry();
-    const midCount = 1200;
+    const midCount = 400;
     const midPos = new Float32Array(midCount * 3);
     const midCol = new Float32Array(midCount * 3);
     for (let i = 0; i < midCount; i++) {
@@ -3112,29 +3518,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     camera.position.set(0, 0, 8);
     const clock = new THREE.Clock();
+    let heroLast = 0;
+    const HERO_FPS = 30;
+    const HERO_INTERVAL = 1000 / HERO_FPS;
 
-    function animateHero() {
+    function animateHero(now: number) {
       requestAnimationFrame(animateHero);
+      if (now - heroLast < HERO_INTERVAL) return;
+      heroLast = now;
       const t = clock.getElapsedTime();
 
-      // Parallax layers at different speeds
       farParticles.rotation.y = t * 0.012;
       farParticles.rotation.x = t * 0.004;
       midParticles.rotation.y = t * 0.022;
       midParticles.rotation.x = -t * 0.007;
 
-      // Smooth camera parallax
       camera.position.x += (mouseX * 2.5 - camera.position.x) * 0.012;
       camera.position.y += (-mouseY * 1.5 - camera.position.y) * 0.012;
       camera.lookAt(0, 0, 0);
 
-      // Buildings breathe
       buildings.forEach((b, i) => {
         b.rotation.y = t * 0.05 + i;
         b.position.y = -3 + Math.sin(t * 0.22 + i * 0.8) * 0.35;
       });
 
-      // Floaters rotate and float
       floaters.forEach((f, i) => {
         f.rotation.x = t * (0.14 + i * 0.035);
         f.rotation.y = t * (0.09 + i * 0.028);
@@ -3142,7 +3549,6 @@ document.addEventListener('DOMContentLoaded', () => {
         f.position.y += Math.sin(t * 0.38 + i * 1.3) * 0.002;
       });
 
-      // Portal pulses
       const pulse = 0.85 + Math.sin(t * 1.2) * 0.15;
       (portalRing.material as THREE.MeshBasicMaterial).opacity = 0.12 + pulse * 0.1;
       portalRing.rotation.z = t * 0.08;
@@ -3150,7 +3556,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       renderer.render(scene, camera);
     }
-    animateHero();
+    requestAnimationFrame(animateHero);
 
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -3164,10 +3570,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (tourCanvas) {
     const tScene = new THREE.Scene();
     const tCam = new THREE.PerspectiveCamera(60, 2, 0.1, 100);
-    const tRend = new THREE.WebGLRenderer({ canvas: tourCanvas, alpha: true, antialias: true });
-    tRend.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const tRend = new THREE.WebGLRenderer({ canvas: tourCanvas, alpha: true, antialias: false });
+    tRend.setPixelRatio(Math.min(window.devicePixelRatio, 1.0));
 
-    const planeGeo = new THREE.PlaneGeometry(30, 30, 80, 80);
+    const planeGeo = new THREE.PlaneGeometry(30, 30, 30, 30);
     const planeMat = new THREE.MeshBasicMaterial({ color: 0x3d7ec7, wireframe: true, transparent: true, opacity: 0.08 });
     const plane = new THREE.Mesh(planeGeo, planeMat);
     plane.rotation.x = -Math.PI / 2.5;
@@ -3176,7 +3582,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tScene.add(plane);
 
     const ptsGeo = new THREE.BufferGeometry();
-    const ptCount = 800;
+    const ptCount = 300;
     const ptPos = new Float32Array(ptCount * 3);
     for (let i = 0; i < ptCount * 3; i += 3) {
       ptPos[i] = (Math.random() - 0.5) * 20;
@@ -3205,8 +3611,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     sizeTourCanvas();
 
-    function animateTour() {
+    let tourLast = 0;
+    const TOUR_INTERVAL = 1000 / 24;
+
+    function animateTour(now: number) {
       requestAnimationFrame(animateTour);
+      if (now - tourLast < TOUR_INTERVAL) return;
+      tourLast = now;
       const t = tClock.getElapsedTime();
       for (let i = 0; i < posArr.count; i++) {
         const x = posArr.getX(i);
@@ -3218,7 +3629,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tTorus.rotation.y = t * 0.15;
       tRend.render(tScene, tCam);
     }
-    animateTour();
+    requestAnimationFrame(animateTour);
     window.addEventListener('resize', sizeTourCanvas);
   }
 
@@ -3280,7 +3691,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // === SCROLL REVEAL ===
   // === SCROLL REVEAL ===
   const revealEls = document.querySelectorAll(
-    '.hero-badge, .hero-title, .hero-desc, .hero-btns, .hero-stats, .section-label, .section-title, .accent-line, .section-desc, .about-features, .about-card, .service-card, .project-main, .project-amenities, .block-card, .payment-card, .amenity-mini, .contact-item, .contact-form-wrap, .size-tag, .tour-cta-content'
+    '.hero-badge, .hero-title, .hero-desc, .hero-btns, .hero-stats, .about-features, .about-card, .service-card, .project-main, .project-amenities, .block-card, .payment-card, .amenity-mini, .contact-item, .contact-form-wrap, .size-tag, .tour-cta-content'
   );
   revealEls.forEach(el => el.classList.add('reveal'));
   const revealObserver = new IntersectionObserver((entries) => {
@@ -3325,83 +3736,39 @@ document.addEventListener('DOMContentLoaded', () => {
     inView('#services .services-grid', () => {
       animate(
         '#services .services-header',
-        { opacity: [0, 1], y: [-50, 0], filter: ['blur(6px)', 'blur(0px)'] },
-        { duration: 0.75, easing: [0.25, 0.46, 0.45, 0.94] }
+        { opacity: [0.5, 1], y: [-20, 0] },
+        { duration: 0.2, easing: [0.25, 0.46, 0.45, 0.94] }
       );
       animate(
         '#services .service-card',
-        {
-          opacity:  [0, 1],
-          rotateX: ['55deg', '0deg'],
-          y:       [100, 0],
-          scale:   [0.88, 1]
-        },
-        {
-          duration: 1.0,
-          delay:    stagger(0.18),
-          easing:   [0.34, 1.56, 0.64, 1]
-        }
+        { opacity: [0.4, 1], y: [40, 0], scale: [0.95, 1] },
+        { duration: 0.25, delay: stagger(0.06), easing: [0.34, 1.56, 0.64, 1] }
       );
     }, { amount: 0.12 });
 
     // --- ABOUT: Left slides in from left, card slides from right ---
     inView('#about .about-left', () => {
-      animate(
-        '#about .about-left',
-        { opacity: [0, 1], x: [-70, 0] },
-        { duration: 0.85, easing: [0.25, 0.46, 0.45, 0.94] }
-      );
-      animate(
-        '#about .about-right',
-        { opacity: [0, 1], x: [70, 0] },
-        { duration: 0.85, delay: 0.15, easing: [0.25, 0.46, 0.45, 0.94] }
-      );
+      animate('#about .about-left', { opacity: [0.5, 1], x: [-30, 0] }, { duration: 0.22, easing: [0.25, 0.46, 0.45, 0.94] });
+      animate('#about .about-right', { opacity: [0.5, 1], x: [30, 0] }, { duration: 0.22, delay: 0.06, easing: [0.25, 0.46, 0.45, 0.94] });
     }, { amount: 0.25 });
 
     // --- CEO: Split text title + 3D frame drop + values cascade ---
     inView('#ceo .ceo-grid', () => {
-      animate('#ceo .ceo-frame',
-        { opacity: [0, 1], y: [-80, 0], scale: [0.8, 1] },
-        { duration: 0.9, easing: [0.34, 1.56, 0.64, 1] }
-      );
-      animate('#ceo .ceo-role',
-        { opacity: [0, 1], x: [-40, 0] },
-        { duration: 0.6, delay: 0.3, easing: [0.25, 0.46, 0.45, 0.94] }
-      );
-      animate('#ceo .ceo-value',
-        { opacity: [0, 1], x: [-60, 0], filter: ['blur(8px)', 'blur(0px)'] },
-        { duration: 0.65, delay: stagger(0.15, { start: 0.4 }), easing: [0.25, 0.46, 0.45, 0.94] }
-      );
-      animate('#ceo .value-icon',
-        { opacity: [0, 1], scale: [0, 1.2, 1] },
-        { duration: 0.5, delay: stagger(0.15, { start: 0.45 }), easing: [0.34, 1.56, 0.64, 1] }
-      );
-      animate('#ceo .section-title',
-        { opacity: [0, 1], y: [40, 0], filter: ['blur(8px)', 'blur(0px)'] },
-        { duration: 0.7, easing: [0.25, 0.46, 0.45, 0.94] }
-      );
+      animate('#ceo .ceo-frame', { scale: [0.9, 1], y: [-20, 0] }, { duration: 0.25, easing: [0.34, 1.56, 0.64, 1] });
+      animate('#ceo .ceo-value', { x: [-20, 0] }, { duration: 0.2, delay: stagger(0.06, { start: 0.1 }), easing: [0.25, 0.46, 0.45, 0.94] });
+      animate('#ceo .value-icon', { scale: [0.8, 1] }, { duration: 0.18, delay: stagger(0.06, { start: 0.12 }), easing: [0.34, 1.56, 0.64, 1] });
     }, { amount: 0.15 });
 
     // --- TESTIMONIALS: header + cards ---
     inView('#testimonials .testimonials-header', () => {
-      animate('#testimonials .testimonials-header h2',
-        { opacity: [0, 1], y: [50, 0], filter: ['blur(10px)', 'blur(0px)'] },
-        { duration: 0.8, easing: [0.34, 1.56, 0.64, 1] }
-      );
-      animate('#testimonials .section-label',
-        { opacity: [0, 1], y: [-20, 0] },
-        { duration: 0.6, easing: [0.25, 0.46, 0.45, 0.94] }
-      );
-      animate('#testimonials .accent-line',
-        { scaleX: [0, 1], opacity: [0, 1] },
-        { duration: 0.7, delay: 0.3, easing: [0.25, 0.46, 0.45, 0.94] }
-      );
+      animate('#testimonials .testimonials-header h2', { y: [-10, 0] }, { duration: 0.2, easing: [0.34, 1.56, 0.64, 1] });
+      animate('#testimonials .accent-line', { scaleX: [0, 1] }, { duration: 0.2, delay: 0.05, easing: [0.25, 0.46, 0.45, 0.94] });
     }, { amount: 0.3 });
 
     inView('#testimonials .testimonials-grid', () => {
       animate('#testimonials .testimonial-card',
-        { opacity: [0, 1], y: [60, 0], scale: [0.9, 1] },
-        { duration: 0.7, delay: stagger(0.15), easing: [0.34, 1.56, 0.64, 1] }
+        { opacity: [0.5, 1], y: [20, 0], scale: [0.96, 1] },
+        { duration: 0.2, delay: stagger(0.05), easing: [0.34, 1.56, 0.64, 1] }
       );
     }, { amount: 0.15 });
 
@@ -3424,22 +3791,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // --- BLOCKS: fly-in from bottom-right with stagger ---
+    // --- BLOCKS: fast snap-in with stagger ---
     inView('#blocks .blocks-grid', () => {
       animate(
         '#blocks .block-card',
-        { opacity: [0, 1], x: [150, 0], y: [120, 0], scale: [0.75, 1] },
-        { duration: 0.7, delay: stagger(0.08), easing: [0.22, 1, 0.36, 1] }
+        { opacity: [0.4, 1], y: [30, 0], scale: [0.94, 1] },
+        { duration: 0.18, delay: stagger(0.04), easing: [0.22, 1, 0.36, 1] }
       );
     }, { amount: 0.1 });
 
-    // --- BLOCKS SIZE TAGS: slide up ---
+    // --- BLOCKS SIZE TAGS ---
     inView('#blocks .size-tags', () => {
-      animate(
-        '#blocks .size-tag',
-        { opacity: [0, 1], y: [40, 0] },
-        { duration: 0.55, delay: stagger(0.1), easing: [0.25, 0.46, 0.45, 0.94] }
-      );
+      animate('#blocks .size-tag', { opacity: [0.5, 1], y: [15, 0] }, { duration: 0.15, delay: stagger(0.04), easing: [0.25, 0.46, 0.45, 0.94] });
     }, { amount: 0.4 });
 
     // --- PAYMENT: Holographic 3D entrance + stagger features ---
