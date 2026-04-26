@@ -3271,6 +3271,126 @@ body.cursor-link #cursor-ring { width: 44px; height: 44px; border-color: var(--g
   font-family: var(--font-body) !important;
   font-weight: 700 !important;
 }
+
+/* ================================================================
+   FIXED BACKGROUND SCROLL BEHAVIOR
+   Keep one persistent backdrop visible under all main sections.
+   ================================================================ */
+#hero-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#about,
+#services,
+#blocks,
+#testimonials {
+  background: linear-gradient(180deg, rgba(7, 14, 26, 0.82) 0%, rgba(12, 21, 38, 0.74) 100%) !important;
+}
+
+#ceo,
+#projects,
+#payment,
+#contact {
+  background: transparent !important;
+}
+
+#footer {
+  background: linear-gradient(180deg, rgba(7, 14, 26, 0.86) 0%, rgba(12, 21, 38, 0.82) 100%) !important;
+}
+
+/* ================================================================
+   PREMIUM MODERN POLISH
+   Stronger blur layers, cleaner section hierarchy, and aligned headings.
+   ================================================================ */
+
+/* Bigger + centered section headings across the site */
+.section-label {
+  text-align: center !important;
+  font-size: 0.92rem !important;
+  letter-spacing: 4px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title {
+  text-align: center !important;
+  font-size: clamp(2.4rem, 5.2vw, 4.2rem) !important;
+  line-height: 1.12;
+  letter-spacing: 0.015em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.accent-line {
+  width: 90px;
+  height: 4px;
+  margin: 12px auto 22px !important;
+}
+
+/* Keep long body text aligned and visually balanced */
+.section-desc {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Consistent centered section intros */
+.services-header,
+.testimonials-header,
+.blocks-header > div,
+.payment-info,
+.contact-info {
+  text-align: center;
+}
+
+/* Stronger frosted panels for alternating solid sections */
+#about,
+#services,
+#blocks,
+#testimonials,
+#footer {
+  background: linear-gradient(180deg, rgba(7, 14, 26, 0.93) 0%, rgba(12, 21, 38, 0.9) 100%) !important;
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+}
+
+/* Transparent sections still reveal fixed background, but with a premium haze */
+#ceo,
+#projects,
+#payment,
+#contact {
+  background: linear-gradient(180deg, rgba(7, 14, 26, 0.62) 0%, rgba(12, 21, 38, 0.58) 100%) !important;
+  backdrop-filter: blur(10px) saturate(1.1);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+}
+
+/* Upgrade key cards for a cleaner premium glass design */
+.about-card-inner,
+.service-card,
+.project-main,
+.project-amenities,
+.block-card,
+.payment-card,
+.contact-form-wrap,
+.testimonial-card {
+  background: linear-gradient(145deg, rgba(17, 30, 52, 0.82), rgba(12, 21, 38, 0.78)) !important;
+  backdrop-filter: blur(20px) saturate(1.22);
+  -webkit-backdrop-filter: blur(20px) saturate(1.22);
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+/* Keep layout alignment clean in the two-column intro sections */
+.about-left,
+.ceo-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>
 
 
