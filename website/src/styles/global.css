@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap');
+<<<<<<< HEAD
+=======
+@import './fixes.css';
+>>>>>>> fb60c5c3b162dfc5b56ce3703e7881faa1784870
 
 :root {
   --blue: #3d7ec7;
@@ -36,6 +40,12 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+<<<<<<< HEAD
+=======
+  overflow-x: hidden;
+  /* Prevent scrollbar appearing/disappearing from shifting layout */
+  scrollbar-gutter: stable;
+>>>>>>> fb60c5c3b162dfc5b56ce3703e7881faa1784870
 }
 
 body {
@@ -43,6 +53,7 @@ body {
   background: var(--navy);
   color: var(--white);
   overflow-x: hidden;
+<<<<<<< HEAD
   max-width: 100vw;
   line-height: 1.72;
   letter-spacing: 0.015em;
@@ -77,6 +88,12 @@ body {
 .site-page {
   position: relative;
   z-index: 1;
+=======
+  line-height: 1.72;
+  letter-spacing: 0.015em;
+  width: 100%;
+  max-width: 100%;
+>>>>>>> fb60c5c3b162dfc5b56ce3703e7881faa1784870
 }
 
 a {
