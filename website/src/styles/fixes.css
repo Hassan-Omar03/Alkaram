@@ -301,15 +301,94 @@ body {
   }
 }
 
+/* ----------------------------------------------------------------
+   15. MOBILE NAV — hamburger show/hide + dropdown
+   ----------------------------------------------------------------
+   The hamburger JS toggles .open on #navLinks, but the CSS
+   to actually show/hide the menu on mobile was missing.
+   ---------------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Show hamburger, hide inline nav links */
+  .hamburger {
+    display: flex !important;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(340px, 92vw);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(7, 14, 26, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    backdrop-filter: blur(32px) saturate(1.4);
+    -webkit-backdrop-filter: blur(32px) saturate(1.4);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    padding: 8px;
+    z-index: 999;
+    overflow: hidden;
+  }
+
+  .nav-links.open {
+    display: flex !important;
+  }
+
+  .nav-links a {
+    padding: 12px 16px !important;
+    border-radius: 10px !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 1.2px;
+    color: rgba(255, 255, 255, 0.75) !important;
+    text-align: left;
+    width: 100%;
+  }
+
+  .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 1) !important;
+  }
+
+  /* 360° Tour button inside dropdown */
+  .nav-links .nav-tour-btn.btn {
+    margin-top: 4px;
+    width: 100%;
+    justify-content: center;
+    height: 42px !important;
+  }
+
+  /* Make nav-inner position:relative so dropdown is anchored */
+  .nav-inner {
+    position: relative !important;
+    width: calc(100% - 32px) !important;
+  }
+}
+
+/* ----------------------------------------------------------------
+   16. HERO STATS — 3 boxes fit on all screen sizes
+   ---------------------------------------------------------------- */
 @media (max-width: 480px) {
   .hero-stats {
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
+    justify-content: center;
   }
   .glass-stat {
-    flex: 1 1 auto;
-    min-width: 80px;
-    padding: 14px 16px;
+    flex: 1 1 calc(33% - 8px);
+    min-width: 90px;
+    max-width: 120px;
+    padding: 14px 10px;
+  }
+  .stat-num {
+    font-size: 1.8rem !important;
+  }
+  .stat-label {
+    font-size: 0.62rem !important;
+    letter-spacing: 1px;
   }
 }
 
