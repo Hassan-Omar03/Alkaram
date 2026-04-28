@@ -15,7 +15,7 @@ import Layout from '../layouts/Layout.astro';
 <nav id="navbar">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">
-      <img src="/images/logo.jpg" alt="Al Karam Real Estate" class="nav-logo-img" />
+      <img src="/images/logo.png" alt="Al Karam Real Estate" class="nav-logo-img" />
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
@@ -135,7 +135,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="about-right">
         <div class="about-card">
           <div class="about-card-inner">
-            <img src="/images/logo.jpg" alt="Al Karam Real Estate" class="about-logo-img" />
+            <img src="/images/logo.png" alt="Al Karam Real Estate" class="about-logo-img" />
             <div class="card-divider"></div>
             <div class="card-parent">
               <span class="card-parent-label">Partnered With</span>
@@ -703,7 +703,7 @@ import Layout from '../layouts/Layout.astro';
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="/images/logo.jpg" alt="Al Karam Real Estate" class="footer-logo-img" />
+        <img src="/images/logo.png" alt="Al Karam Real Estate" class="footer-logo-img" />
         <p>Authorized sub-dealer of Al Jalil Developers. Your trusted partner for property investment in Al Jalil Garden Housing Scheme, Lahore.</p>
       </div>
       <div class="footer-links">
@@ -804,7 +804,6 @@ import Layout from '../layouts/Layout.astro';
   max-height: 36px;
   display: block;
   object-fit: contain;
-  background: white;
   border-radius: 6px;
   padding: 2px 4px;
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
@@ -1209,7 +1208,7 @@ body.aurora-active .cursor-aurora {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 80px;
-  align-items: center;
+  align-items: stretch;
 }
 .about-features {
   display: grid;
@@ -1312,7 +1311,7 @@ body.aurora-active .cursor-aurora {
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;
   gap: 80px;
-  align-items: center;
+  align-items: stretch;
 }
 .ceo-visual { display: flex; justify-content: center; }
 .ceo-frame {
@@ -2165,7 +2164,7 @@ body.aurora-active .cursor-aurora {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  align-items: center;
+  align-items: stretch;
 }
 .payment-card-wrap { display: flex; justify-content: center; }
 .payment-card {
@@ -2410,7 +2409,6 @@ body.aurora-active .cursor-aurora {
   width: clamp(110px, 12vw, 150px);
   height: auto;
   margin-bottom: 16px;
-  background: white;
   border-radius: 6px;
   padding: 4px 8px;
 }
@@ -2496,6 +2494,7 @@ body.footer-in-view .whatsapp-float:hover {
 @media (max-width: 768px) {
   .nav-inner {
     justify-content: space-between;
+    width: calc(100% - 32px);
   }
 
   .whatsapp-float {
@@ -2503,6 +2502,8 @@ body.footer-in-view .whatsapp-float:hover {
     height: 54px;
     right: 14px;
     bottom: calc(env(safe-area-inset-bottom) + 14px);
+    z-index: 9999;
+    display: flex !important;
   }
 
   body.footer-in-view .whatsapp-float {
@@ -2541,15 +2542,33 @@ body.footer-in-view .whatsapp-float:hover {
   .hero-stats { gap: 20px; }
   .stat-divider { display: none; }
   .contact-form-wrap { padding: 30px 20px; }
+  .contact-info { padding: 30px 20px !important; }
+  .payment-info { padding: 30px 20px !important; }
+  .ceo-info { padding: 30px 20px !important; }
+  .about-left { padding: 30px 20px !important; }
+
   /* Hero buttons equal width on mobile */
   .hero-btns { flex-direction: row; gap: 12px; }
   .hero-btns .btn { flex: 1; justify-content: center; text-align: center; font-size: 0.75rem; padding: 14px 10px; }
+
   /* Stats in one row */
-  .hero-stats { flex-wrap: nowrap; gap: 0; justify-content: space-around; width: 100%; }
+  .hero-stats {
+    flex-wrap: nowrap;
+    gap: 0;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0 8px;
+  }
   .stat-divider { display: block; width: 1px; height: 40px; background: rgba(61,126,199,0.2); }
-  .stat-num { font-size: 1.6rem; }
-  .stat-plus { font-size: 1rem; }
-  .stat-label { font-size: 0.6rem; letter-spacing: 1px; }
+  .glass-stat {
+    padding: 14px 12px;
+    flex: 1;
+    min-width: 0;
+  }
+  .stat-num { font-size: 1.4rem; }
+  .stat-plus { font-size: 0.9rem; }
+  .stat-label { font-size: 0.55rem; letter-spacing: 0.5px; }
+
   /* Plot cards responsive */
   .project-plots { grid-template-columns: repeat(3, 1fr); }
   .plot-card { height: 140px; }
@@ -2558,6 +2577,15 @@ body.footer-in-view .whatsapp-float:hover {
   .plot-card-badge { color: #ff6b35; background: rgba(255,107,53,0.15); border-color: rgba(255,107,53,0.5); }
   /* Project main padding */
   .project-main { padding: 24px; }
+
+  /* Payment and CEO layout stack */
+  .payment-layout { grid-template-columns: 1fr; }
+  .ceo-grid { grid-template-columns: 1fr; }
+
+  /* Fix overflow / white space on right */
+  body, html { overflow-x: hidden; max-width: 100vw; }
+  .section { padding: 60px 16px; }
+  * { box-sizing: border-box; }
 }
 @media (max-width: 480px) {
   .amenities-grid-mini { grid-template-columns: repeat(2, 1fr); }
@@ -2566,6 +2594,9 @@ body.footer-in-view .whatsapp-float:hover {
   .hero-btns .btn { flex: 1; font-size: 0.7rem; padding: 12px 8px; }
   .project-plots { grid-template-columns: repeat(2, 1fr); }
   .plot-card { height: 130px; }
+  .glass-stat { padding: 12px 8px; }
+  .stat-num { font-size: 1.2rem; }
+  .stat-label { font-size: 0.5rem; }
 }
 
 .cinematic-section {
@@ -3698,6 +3729,19 @@ body.cursor-link #cursor-ring { width: 44px; height: 44px; border-color: var(--g
   -webkit-backdrop-filter: blur(8px) !important;
   border: 1px solid rgba(255,255,255,0.25) !important;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 4px 24px rgba(0,0,0,0.3) !important;
+}
+
+/* Glass box on left info panels */
+.payment-info,
+.ceo-info,
+.about-left {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 4px 24px rgba(0,0,0,0.3) !important;
+  border-radius: 20px;
+  padding: 48px;
 }
 
 /* Keep layout alignment clean in the two-column intro sections */
