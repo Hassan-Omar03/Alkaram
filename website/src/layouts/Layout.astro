@@ -13,29 +13,15 @@ const { title } = Astro.props;
   <meta name="keywords" content="Al Karam Real Estate, Al Jalil Garden, Al Noor Orchard, Lahore real estate, plots in Lahore, Al Jalil Developers" />
   <link rel="icon" type="image/x-icon" href="/images/logo.jpg" />
   <title>{title}</title>
-<<<<<<< HEAD
-</head>
-<body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  <div class="site-fixed-bg" aria-hidden="true"></div>
-  <div class="site-page">
-    <main id="main-content" tabindex="-1">
-      <slot />
-    </main>
-  </div>
-=======
   <style>
-    /* CRITICAL: applied before any JS or CSS loads */
     html, body { overflow-x: hidden !important; }
     html { scrollbar-gutter: stable; }
-    /* Cursor elements parked off-screen before JS moves them */
     #cursor-dot, #cursor-ring {
       position: fixed !important;
       top: -200px !important;
       left: -200px !important;
       pointer-events: none !important;
     }
-    /* Hamburger always visible on mobile — critical rule fires before all CSS */
     @media (max-width: 768px) {
       .hamburger {
         display: flex !important;
@@ -45,14 +31,18 @@ const { title } = Astro.props;
   </style>
 </head>
 <body>
-  <slot />
->>>>>>> fb60c5c3b162dfc5b56ce3703e7881faa1784870
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="site-fixed-bg" aria-hidden="true"></div>
+  <div class="site-page">
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+  </div>
 </body>
 </html>
 
 <style is:global>
   @import '../styles/global.css';
-<<<<<<< HEAD
 
   .skip-link {
     position: fixed;
@@ -76,6 +66,4 @@ const { title } = Astro.props;
     outline: none;
     box-shadow: 0 0 0 3px rgba(90, 157, 224, 0.35);
   }
-=======
->>>>>>> fb60c5c3b162dfc5b56ce3703e7881faa1784870
 </style>
