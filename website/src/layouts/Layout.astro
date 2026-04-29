@@ -18,9 +18,11 @@ const { title } = Astro.props;
     html { scrollbar-gutter: stable; }
     #cursor-dot, #cursor-ring {
       position: fixed !important;
-      top: -200px !important;
-      left: -200px !important;
+      top: 0 !important;
+      left: 0 !important;
       pointer-events: none !important;
+      contain: strict !important;
+      will-change: transform !important;
     }
     @media (max-width: 768px) {
       .hamburger {
