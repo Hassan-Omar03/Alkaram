@@ -100,9 +100,10 @@ img {
 
 .section-label {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  /* Standardised to 1rem — matches Available Inventory and all section labels */
+  font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--blue-light);
   margin-bottom: 12px;

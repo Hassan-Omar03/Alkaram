@@ -428,3 +428,85 @@ body {
 .whatsapp-float {
   pointer-events: auto;
 }
+
+/* ----------------------------------------------------------------
+   17. TYPOGRAPHY CONSISTENCY — Force all section labels to 1rem
+   ----------------------------------------------------------------
+   Ensures every section label (Who We Are, Leadership, What We Do,
+   Lifestyle, Available Inventory, Easy Financing, Get In Touch etc.)
+   renders at exactly the same size regardless of specificity.
+   ---------------------------------------------------------------- */
+.section-label,
+.amenities-label {
+  font-size: 1rem !important;
+  letter-spacing: 4px !important;
+  font-weight: 600 !important;
+}
+
+/* ================================================================
+   18. SCROLL-JUMP CURE
+   ================================================================
+   PROBLEM: Moving the cursor or hovering elements causes a visible
+   scroll jump / double-scroll. Three root causes:
+
+   A) Float animations (floatCard, floatBlock, floatTestimonial)
+      run continuously. When hover fires a DIFFERENT transform the
+      browser snaps from mid-animation position → scroll jump.
+
+   B) mix-blend-mode: screen on #cursor-dot forces the browser to
+      composite EVERY layer on every mousemove → full-page repaint
+      → scroll jitter.
+
+   C) scale() on hover transforms causes sibling reflow on grid
+      children → scroll position shifts.
+
+   FIX A: Kill ALL float animations globally.
+   FIX B: Remove mix-blend-mode + filter from cursor elements.
+   FIX C: Enforce translateY-only on every card hover.
+   ================================================================ */
+
+/* FIX A — stop all float/drift animations */
+.service-card,
+.block-card,
+.testimonial-card,
+.payment-card.highlight,
+#about .about-right,
+#ceo .ceo-frame,
+.ceo-orb,
+.orb {
+  animation: none !important;
+}
+
+/* FIX B — cursor: no mix-blend-mode, no filter → GPU composited only */
+#cursor-dot {
+  mix-blend-mode: normal !important;
+  filter: none !important;
+  background: rgba(90, 157, 224, 0.9) !important;
+}
+#cursor-ring {
+  mix-blend-mode: normal !important;
+  filter: none !important;
+}
+.cursor-aurora {
+  mix-blend-mode: normal !important;
+  filter: none !important;
+  display: none !important; /* aurora glow causes full repaints */
+}
+
+/* FIX C — translateY only, NO scale on any card hover */
+.service-card:hover      { transform: translateY(-6px) !important; }
+.block-card:hover        { transform: translateY(-5px) !important; }
+.testimonial-card:hover  { transform: translateY(-5px) !important; }
+.about-card-inner:hover  { transform: translateY(-6px) !important; }
+.payment-card:hover      { transform: translateY(-6px) !important; }
+.plot-card:hover         { transform: translateY(-6px) !important; }
+.amenity-mini:hover      { transform: translateY(-4px) !important; }
+.size-tag:hover          { transform: translateY(-3px) !important; }
+
+/* GPU promotion for elements that still animate */
+.service-icon::after,
+.badge-dot,
+.scroll-line,
+.accent-line {
+  will-change: transform, opacity;
+}
