@@ -510,3 +510,25 @@ body {
 .accent-line {
   will-change: transform, opacity;
 }
+
+/* ----------------------------------------------------------------
+   19. CEO & AVAILABLE BLOCKS — no cinematic blur orbs
+   ----------------------------------------------------------------
+   JS adds .cinematic-section to all sections, which causes
+   ::before / ::after pseudo-elements with filter:blur(70px) to
+   appear as blurred glow orbs on those sections.
+   Belt-and-suspenders override: keep those pseudo-elements
+   permanently invisible on #ceo and #blocks, regardless of JS.
+   ---------------------------------------------------------------- */
+#ceo.cinematic-section::before,
+#ceo.cinematic-section::after,
+#ceo.cinematic-section.in-view::before,
+#ceo.cinematic-section.in-view::after,
+#blocks.cinematic-section::before,
+#blocks.cinematic-section::after,
+#blocks.cinematic-section.in-view::before,
+#blocks.cinematic-section.in-view::after {
+  opacity: 0 !important;
+  filter: none !important;
+  pointer-events: none !important;
+}
