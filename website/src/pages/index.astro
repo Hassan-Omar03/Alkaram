@@ -143,7 +143,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="about-card-glow"></div>
         </div>
       </div>
-    </div>
+    </div
   </div>
 </section>
 
@@ -1925,21 +1925,16 @@ body.aurora-active .cursor-aurora {
   background: linear-gradient(90deg, transparent, rgba(61,126,199,0.2), transparent);
 }
 
-/* ── Header row: Available Blocks heading + description side-by-side ── */
+/* ── Blocks header ── */
 .blocks-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
   margin-bottom: 40px;
+  text-align: center;
 }
-.blocks-label-centered {
-  display: block;
-  width: 100%;
-  text-align: center !important;
-  letter-spacing: 4px;
-}
-.blocks-header-row {
+.blocks-title-row {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -1950,22 +1945,20 @@ body.aurora-active .cursor-aurora {
   flex: 0 0 auto;
 }
 .blocks-heading-wrap .section-title {
-  font-size: clamp(1.9rem, 3.2vw, 2.8rem) !important;
-  text-align: left !important;
   white-space: nowrap;
   margin-bottom: 8px !important;
-  line-height: 1.1 !important;
+  text-align: left !important;
 }
 .blocks-heading-wrap .accent-line {
-  display: block !important;
-  margin: 0 auto !important;
+  margin: 0 !important;
 }
-.blocks-header .section-desc {
+.blocks-desc {
   flex: 1;
+  font-size: 1.02rem;
+  color: var(--gray-light);
+  line-height: 1.9;
   text-align: left;
-  margin-bottom: 0;
-  white-space: normal;
-  align-self: center;
+  margin: 0;
 }
 
 /* ── Content: block grid (left) + plot sizes (right) ── */
@@ -2626,8 +2619,8 @@ body.footer-in-view .whatsapp-float:hover {
   .blocks-sizes { flex: unset; width: 100%; height: auto; }
   .size-tags { grid-template-columns: repeat(4, 1fr); grid-template-rows: auto; flex: unset; }
   .blocks-grid { grid-template-columns: repeat(2, 1fr); }
-  .blocks-header-row { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .blocks-heading-wrap { white-space: normal; }
+  .blocks-title-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .blocks-heading-wrap .section-title { white-space: normal !important; }
   .amenities-grid-mini { grid-template-columns: repeat(3, 1fr); }
   .contact-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
@@ -4151,7 +4144,7 @@ body.menu-open {
   }
   .about-card {
     height: 50%;
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content:start;
