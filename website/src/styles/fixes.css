@@ -1,50 +1,36 @@
 /* ================================================================
-   FIXES.CSS — Complete scroll, overflow & layout-shift fix
-   Load order: imported first in global.css, so index.astro
-   <style> rules (which come later) override where needed.
+   FIXES.CSS — Horizontal overflow & layout stability
    ================================================================ */
 
-/* ----------------------------------------------------------------
-   1. ROOT — Stable scrollbar, no horizontal overflow
-   ----------------------------------------------------------------
-   PROBLEM: body { max-width: 100vw } — 100vw includes the scrollbar
-   width (~15px). On pages that have a vertical scrollbar this makes
-   body 15px wider than the viewport, creating a horizontal scrollbar.
-   That horizontal scrollbar appears/disappears as content changes,
-   shifting the layout and causing the "double scrollbar" flicker.
-
-   FIX: Use width:100% on body (never 100vw). Lock overflow-x on
-   both html and body. Reserve scrollbar space with scrollbar-gutter
-   so its appearance never shifts the layout.
-   ---------------------------------------------------------------- */
-html {
-  overflow-x: hidden;
-  scrollbar-gutter: stable;
-}
-
+/* 1. ROOT — no horizontal scroll, no layout shift */
+html,
 body {
   overflow-x: hidden;
-  width: 100%;          /* NOT 100vw */
-  max-width: 100%;      /* NOT 100vw */
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-/* ----------------------------------------------------------------
-   2. SECTION OVERFLOW CONTAINMENT
-   ----------------------------------------------------------------
-   PROBLEM: Multiple sections have large absolutely-positioned
-   pseudo-elements with negative offsets that bleed outside the
-   section boundary:
-     - .cinematic-section::before  top:-180px  right:-120px
-     - .cinematic-section::after   bottom:-200px  left:-120px
-     - #about::before              top:-200px  right:-200px (600x600)
-     - #ceo::before                bottom:-100px  left:-100px (400x400)
-     - #testimonials::after        top:-100px  (500x500)
-   These create invisible overflow that triggers a horizontal
-   scrollbar which appears/disappears during scroll.
+/* 2. GLOBAL BOX-SIZING */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-   FIX: Add overflow:hidden to every section that has bleeding
-   pseudo-elements. The decorative blurs are fully contained.
-   ---------------------------------------------------------------- */
+/* 3. FULL-WIDTH ELEMENTS — never use 100vw */
+#hero,
+#tour-cta,
+#navbar,
+#footer,
+.marquee-strip,
+.hero-marquee {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* 4. SECTION OVERFLOW — contain bleeding pseudo-elements */
+section,
 .cinematic-section,
 #about,
 #ceo,
@@ -54,30 +40,14 @@ body {
 #blocks,
 #projects,
 #contact,
-#tour-cta {
-  overflow: hidden;
-}
-
-/* ----------------------------------------------------------------
-   3. FULL-WIDTH ELEMENTS — width:100% not 100vw
-   ----------------------------------------------------------------
-   PROBLEM: Any element using width:100vw is 100% of the viewport
-   including the scrollbar gutter, causing 1-2px horizontal overflow.
-
-   FIX: Force all full-bleed elements to width:100%.
-   ---------------------------------------------------------------- */
-#hero,
 #tour-cta,
-.marquee-strip,
-#navbar,
+#hero,
 #footer {
-  width: 100%;
+  overflow-x: hidden;
   max-width: 100%;
 }
 
-/* ----------------------------------------------------------------
-   4. GRID / LAYOUT CONTAINERS — never exceed viewport
-   ---------------------------------------------------------------- */
+/* 5. LAYOUT CONTAINERS */
 .section,
 .about-grid,
 .ceo-grid,
@@ -94,100 +64,61 @@ body {
   box-sizing: border-box;
 }
 
-/* ----------------------------------------------------------------
-   5. MARQUEE — GPU-only, zero layout impact
-   ----------------------------------------------------------------
-   PROBLEM: .marquee-track has width:max-content which can exceed
-   the viewport if the strip container is not clipped.
-   FIX: Ensure strip clips, track uses will-change for GPU layer.
-   ---------------------------------------------------------------- */
+/* 6. MARQUEE — clip overflow, GPU layer */
 .marquee-strip {
   overflow: hidden;
-  contain: layout style;   /* isolate from rest of document */
 }
 .marquee-track {
   will-change: transform;
-  /* translateX animation is GPU-composited — zero layout impact */
 }
 
-/* ----------------------------------------------------------------
-   6. FLOAT ANIMATION vs HOVER CONFLICT — the #1 scroll-jump cause
-   ----------------------------------------------------------------
-   PROBLEM: Cards have a continuously running CSS keyframe animation
-   (floatCard / floatBlock / floatTestimonial) that moves them via
-   translateY. When the cursor enters, a :hover rule applies a
-   DIFFERENT transform. The browser must reconcile two competing
-   transforms in the same frame. It snaps from the mid-animation
-   position to the hover position — this snap is large enough to
-   shift the scroll position visibly.
+/* 7. FIXED/ABSOLUTE ELEMENTS — isolated from layout width */
+#cursor-dot,
+#cursor-ring,
+#scroll-progress,
+.cursor-aurora {
+  pointer-events: none;
+  contain: strict;
+  max-width: none;
+}
+.whatsapp-float {
+  pointer-events: auto;
+  max-width: none;
+}
+#navbar {
+  pointer-events: auto;
+}
 
-   FIX A: Pause the animation on hover so the hover transform takes
-   full, clean control with no snap.
+/* 8. CARD HOVER — translateY only, no scale (prevents reflow) */
+.service-card:hover      { transform: translateY(-6px) !important; }
+.block-card:hover        { transform: translateY(-5px) !important; }
+.testimonial-card:hover  { transform: translateY(-5px) !important; }
+.about-card-inner:hover  { transform: translateY(-6px) !important; }
+.payment-card:hover      { transform: translateY(-6px) !important; }
+.plot-card:hover         { transform: translateY(-6px) !important; }
+.amenity-mini:hover      { transform: translateY(-4px) !important; }
+.size-tag:hover          { transform: translateY(-3px) !important; }
 
-   FIX B: Remove scale() from all hover transforms. scale() on a
-   grid child causes the browser to recalculate sibling positions
-   (layout reflow), which can shift the scroll position.
+/* 9. STOP FLOAT ANIMATIONS — prevent hover/animation transform conflict */
+.service-card,
+.block-card,
+.testimonial-card,
+.payment-card.highlight,
+#about .about-right,
+#ceo .ceo-frame,
+.ceo-orb,
+.orb {
+  animation: none !important;
+}
 
-   FIX C: Disable float animations entirely on touch devices
-   (pointer:coarse). No hover = no conflict, but the animations
-   still cause jitter on low-end phones with no visual benefit.
-   ---------------------------------------------------------------- */
-
-/* FIX A — pause float on hover */
+/* Pause on hover */
 .service-card:hover,
 .block-card:hover,
 .testimonial-card:hover {
   animation-play-state: paused !important;
 }
 
-/* FIX B — translateY only, no scale, on all card hovers */
-.service-card:hover {
-  transform: translateY(-7px) !important;
-}
-.block-card:hover {
-  transform: translateY(-5px) !important;
-}
-.testimonial-card:hover {
-  transform: translateY(-5px) !important;
-}
-.plot-card:hover {
-  transform: translateY(-8px) !important;
-}
-.amenity-mini:hover {
-  transform: translateY(-4px) !important;
-}
-.size-tag:hover {
-  transform: translateY(-3px) !important;
-}
-.about-card-inner:hover {
-  transform: translateY(-8px) !important;
-}
-.payment-card:hover {
-  transform: translateY(-8px) !important;
-}
-
-/* FIX C — no float animations on touch devices */
-@media (pointer: coarse) {
-  .service-card,
-  .block-card,
-  .testimonial-card,
-  #about .about-right,
-  #ceo .ceo-frame,
-  .payment-card.highlight {
-    animation: none !important;
-  }
-}
-
-/* ----------------------------------------------------------------
-   7. PAYMENT CARD — dual animation conflict
-   ----------------------------------------------------------------
-   PROBLEM: .payment-card.highlight has BOTH spinBorder AND floatCard
-   running simultaneously. floatCard conflicts with the :hover
-   transform exactly as described in fix 6.
-   FIX: Remove floatCard from the payment card highlight. spinBorder
-   only animates a CSS custom property (--border-angle), which is
-   GPU-composited and safe.
-   ---------------------------------------------------------------- */
+/* 10. PAYMENT CARD — spinBorder only */
 .payment-card.highlight {
   animation: spinBorder 4s linear infinite !important;
 }
@@ -195,57 +126,39 @@ body {
   animation-play-state: paused !important;
 }
 
-/* ----------------------------------------------------------------
-   8. ORB ANIMATIONS — remove scale(), use translate only
-   ----------------------------------------------------------------
-   PROBLEM: orbDrift and orbFloat keyframes use scale() which
-   triggers layout recalculation on every frame, causing continuous
-   micro-reflows that shift the scroll position when the cursor
-   moves over the section.
-
-   FIX: Replace scale() with opacity variation. The visual effect
-   is preserved (orbs pulse) but no layout is triggered.
-   ---------------------------------------------------------------- */
+/* 11. ORB KEYFRAMES — no scale */
 @keyframes orbDrift {
-  0%,  100% { transform: translate(0, 0);       opacity: 0.8; }
+  0%,  100% { transform: translate(0, 0);        opacity: 0.8; }
   33%        { transform: translate(12px, -18px); opacity: 1;   }
   66%        { transform: translate(-10px, 12px); opacity: 0.7; }
 }
-
 @keyframes orbFloat {
-  0%,  100% { transform: translateY(0);   opacity: 0.7; }
-  50%        { transform: translateY(-16px); opacity: 1; }
+  0%,  100% { transform: translateY(0);    opacity: 0.7; }
+  50%        { transform: translateY(-16px); opacity: 1;  }
 }
 
-/* ----------------------------------------------------------------
-   9. TILT CARDS — JS sets scale(1.02) inline, causing reflow
-   ----------------------------------------------------------------
-   PROBLEM: The JS tilt handler sets:
-     el.style.transform = `perspective(800px) rotateX(${rx}deg)
-       rotateY(${ry}deg) translateY(-10px) scale(1.02)`
-   scale(1.02) on a grid child causes sibling reflow → scroll jump.
-
-   FIX: Use CSS to pre-set the perspective on the parent container
-   and remove scale from the tilt. The JS still sets the inline
-   transform but we override scale to 1 via a CSS rule that applies
-   when the card is being tilted. We also add contain:layout to
-   prevent the tilt from affecting siblings.
-   ---------------------------------------------------------------- */
+/* 12. TILT CARDS — contain layout so tilt doesn't shift siblings */
 .tilt-card {
-  contain: layout;          /* tilt transform cannot affect siblings */
+  contain: layout;
   overflow: hidden;
   transform-origin: center center;
 }
 
-/* ----------------------------------------------------------------
-   10. WHATSAPP PULSE — remove box-shadow from keyframes
-   ----------------------------------------------------------------
-   PROBLEM: whatsappPulse animates box-shadow which triggers paint
-   on every frame. This is a continuous repaint that can cause
-   micro-jitter during scroll.
-   FIX: Already overridden in index.astro with waPulse (opacity
-   only). Ensure the box-shadow version is suppressed.
-   ---------------------------------------------------------------- */
+/* 13. CURSOR — no blend mode (causes full repaints) */
+#cursor-dot {
+  mix-blend-mode: normal !important;
+  filter: none !important;
+  background: rgba(90, 157, 224, 0.9) !important;
+}
+#cursor-ring {
+  mix-blend-mode: normal !important;
+  filter: none !important;
+}
+.cursor-aurora {
+  display: none !important;
+}
+
+/* 14. WHATSAPP PULSE — opacity only */
 .whatsapp-float {
   animation: waPulse 2s ease-in-out infinite !important;
 }
@@ -254,33 +167,39 @@ body {
   50%        { opacity: 0.75; }
 }
 
-/* ----------------------------------------------------------------
-   11. CEO INITIALS PULSE — text-shadow in keyframes triggers paint
-   ----------------------------------------------------------------
-   PROBLEM: ceoInitialsPulse animates text-shadow which triggers
-   paint on every frame.
-   FIX: Replace with opacity-only pulse.
-   ---------------------------------------------------------------- */
+/* 15. CEO INITIALS — opacity only */
 @keyframes ceoInitialsPulse {
   0%,  100% { opacity: 0.85; }
   50%        { opacity: 1;    }
 }
 
-/* ----------------------------------------------------------------
-   12. MOBILE STABILITY
-   ---------------------------------------------------------------- */
-@media (max-width: 768px) {
-  /* Disable all float animations — no hover on touch, no benefit */
-  .service-card,
-  .block-card,
-  .testimonial-card,
-  #about .about-right,
-  #ceo .ceo-frame,
-  .payment-card.highlight {
-    animation: none !important;
-  }
+/* 16. CEO & BLOCKS — hide cinematic orbs */
+#ceo.cinematic-section::before,
+#ceo.cinematic-section::after,
+#ceo.cinematic-section.in-view::before,
+#ceo.cinematic-section.in-view::after,
+#blocks.cinematic-section::before,
+#blocks.cinematic-section::after,
+#blocks.cinematic-section.in-view::before,
+#blocks.cinematic-section.in-view::after {
+  opacity: 0 !important;
+  filter: none !important;
+  pointer-events: none !important;
+}
 
-  /* All cards must stay within their grid column */
+/* 17. GPU PROMOTION */
+#about .about-right,
+#ceo .ceo-frame,
+.ceo-orb,
+.marquee-track,
+#cursor-dot,
+#cursor-ring,
+.whatsapp-float {
+  will-change: transform;
+}
+
+/* 18. MOBILE */
+@media (max-width: 768px) {
   .service-card,
   .block-card,
   .testimonial-card,
@@ -291,24 +210,13 @@ body {
   .about-card,
   .contact-form-wrap {
     max-width: 100%;
-    box-sizing: border-box;
   }
 
-  /* Plot cards: allow horizontal scroll within the container only */
   .project-plots {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-}
 
-/* ----------------------------------------------------------------
-   15. MOBILE NAV — hamburger show/hide + dropdown
-   ----------------------------------------------------------------
-   The hamburger JS toggles .open on #navLinks, but the CSS
-   to actually show/hide the menu on mobile was missing.
-   ---------------------------------------------------------------- */
-@media (max-width: 768px) {
-  /* Show hamburger, hide inline nav links */
   .hamburger {
     display: flex !important;
   }
@@ -342,18 +250,10 @@ body {
     padding: 12px 16px !important;
     border-radius: 10px !important;
     font-size: 0.85rem !important;
-    letter-spacing: 1.2px;
     color: rgba(255, 255, 255, 0.75) !important;
-    text-align: left;
     width: 100%;
   }
 
-  .nav-links a:hover {
-    background: rgba(255, 255, 255, 0.07);
-    color: rgba(255, 255, 255, 1) !important;
-  }
-
-  /* 360° Tour button inside dropdown */
   .nav-links .nav-tour-btn.btn {
     margin-top: 4px;
     width: 100%;
@@ -361,16 +261,12 @@ body {
     height: 42px !important;
   }
 
-  /* Make nav-inner position:relative so dropdown is anchored */
   .nav-inner {
     position: relative !important;
     width: calc(100% - 32px) !important;
   }
 }
 
-/* ----------------------------------------------------------------
-   16. HERO STATS — 3 boxes fit on all screen sizes
-   ---------------------------------------------------------------- */
 @media (max-width: 480px) {
   .hero-stats {
     flex-wrap: wrap;
@@ -383,152 +279,14 @@ body {
     max-width: 120px;
     padding: 14px 10px;
   }
-  .stat-num {
-    font-size: 1.8rem !important;
-  }
-  .stat-label {
-    font-size: 0.62rem !important;
-    letter-spacing: 1px;
-  }
+  .stat-num  { font-size: 1.8rem !important; }
+  .stat-label { font-size: 0.62rem !important; letter-spacing: 1px; }
 }
 
-/* ----------------------------------------------------------------
-   13. GPU PROMOTION — will-change for continuously animated elements
-   ----------------------------------------------------------------
-   Promotes elements to their own compositor layer so their
-   animations never trigger layout or paint on the main thread.
-   ---------------------------------------------------------------- */
-#about .about-right,
-#ceo .ceo-frame,
-.ceo-orb,
-.marquee-track,
-.cursor-aurora,
-#cursor-dot,
-#cursor-ring,
-.whatsapp-float {
-  will-change: transform;
-}
-
-/* ----------------------------------------------------------------
-   14. FIXED ELEMENTS — must not contribute to scroll width
-   ---------------------------------------------------------------- */
-/* Cursor-only elements: fully isolated, no pointer events */
-#cursor-dot,
-#cursor-ring,
-#scroll-progress,
-.cursor-aurora {
-  pointer-events: none;
-  contain: strict;
-}
-/* Navbar and whatsapp: interactive, must NOT use contain:strict */
-#navbar {
-  pointer-events: auto;
-  contain: layout style;   /* safe: no size containment, no clipping */
-}
-.whatsapp-float {
-  pointer-events: auto;
-}
-
-/* ----------------------------------------------------------------
-   17. TYPOGRAPHY CONSISTENCY — Force all section labels to 1rem
-   ----------------------------------------------------------------
-   Ensures every section label (Who We Are, Leadership, What We Do,
-   Lifestyle, Available Inventory, Easy Financing, Get In Touch etc.)
-   renders at exactly the same size regardless of specificity.
-   ---------------------------------------------------------------- */
+/* 19. TYPOGRAPHY */
 .section-label,
 .amenities-label {
   font-size: 1rem !important;
   letter-spacing: 4px !important;
   font-weight: 600 !important;
-}
-
-/* ================================================================
-   18. SCROLL-JUMP CURE
-   ================================================================
-   PROBLEM: Moving the cursor or hovering elements causes a visible
-   scroll jump / double-scroll. Three root causes:
-
-   A) Float animations (floatCard, floatBlock, floatTestimonial)
-      run continuously. When hover fires a DIFFERENT transform the
-      browser snaps from mid-animation position → scroll jump.
-
-   B) mix-blend-mode: screen on #cursor-dot forces the browser to
-      composite EVERY layer on every mousemove → full-page repaint
-      → scroll jitter.
-
-   C) scale() on hover transforms causes sibling reflow on grid
-      children → scroll position shifts.
-
-   FIX A: Kill ALL float animations globally.
-   FIX B: Remove mix-blend-mode + filter from cursor elements.
-   FIX C: Enforce translateY-only on every card hover.
-   ================================================================ */
-
-/* FIX A — stop all float/drift animations */
-.service-card,
-.block-card,
-.testimonial-card,
-.payment-card.highlight,
-#about .about-right,
-#ceo .ceo-frame,
-.ceo-orb,
-.orb {
-  animation: none !important;
-}
-
-/* FIX B — cursor: no mix-blend-mode, no filter → GPU composited only */
-#cursor-dot {
-  mix-blend-mode: normal !important;
-  filter: none !important;
-  background: rgba(90, 157, 224, 0.9) !important;
-}
-#cursor-ring {
-  mix-blend-mode: normal !important;
-  filter: none !important;
-}
-.cursor-aurora {
-  mix-blend-mode: normal !important;
-  filter: none !important;
-  display: none !important; /* aurora glow causes full repaints */
-}
-
-/* FIX C — translateY only, NO scale on any card hover */
-.service-card:hover      { transform: translateY(-6px) !important; }
-.block-card:hover        { transform: translateY(-5px) !important; }
-.testimonial-card:hover  { transform: translateY(-5px) !important; }
-.about-card-inner:hover  { transform: translateY(-6px) !important; }
-.payment-card:hover      { transform: translateY(-6px) !important; }
-.plot-card:hover         { transform: translateY(-6px) !important; }
-.amenity-mini:hover      { transform: translateY(-4px) !important; }
-.size-tag:hover          { transform: translateY(-3px) !important; }
-
-/* GPU promotion for elements that still animate */
-.service-icon::after,
-.badge-dot,
-.scroll-line,
-.accent-line {
-  will-change: transform, opacity;
-}
-
-/* ----------------------------------------------------------------
-   19. CEO & AVAILABLE BLOCKS — no cinematic blur orbs
-   ----------------------------------------------------------------
-   JS adds .cinematic-section to all sections, which causes
-   ::before / ::after pseudo-elements with filter:blur(70px) to
-   appear as blurred glow orbs on those sections.
-   Belt-and-suspenders override: keep those pseudo-elements
-   permanently invisible on #ceo and #blocks, regardless of JS.
-   ---------------------------------------------------------------- */
-#ceo.cinematic-section::before,
-#ceo.cinematic-section::after,
-#ceo.cinematic-section.in-view::before,
-#ceo.cinematic-section.in-view::after,
-#blocks.cinematic-section::before,
-#blocks.cinematic-section::after,
-#blocks.cinematic-section.in-view::before,
-#blocks.cinematic-section.in-view::after {
-  opacity: 0 !important;
-  filter: none !important;
-  pointer-events: none !important;
 }
