@@ -1,28 +1,16 @@
 {
-<<<<<<< HEAD
   "name": "alkaram-real-estate",
   "type": "module",
   "version": "1.0.0",
-=======
-  "name": "alkarm",
-  "version": "1.0.0",
-  "type": "module",
->>>>>>> b3d6edcd9c3a97df4ef950c83507c8c3e38b4ce8
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "astro": "^5.7.10",
     "framer-motion": "^12.38.0",
     "gsap": "^3.15.0",
     "three": "^0.173.0"
   }
 }
-=======
-    "astro": "^6.1.9"
-  }
-}
->>>>>>> b3d6edcd9c3a97df4ef950c83507c8c3e38b4ce8
