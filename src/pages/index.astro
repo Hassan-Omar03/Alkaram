@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -2866,82 +2866,12 @@ body.footer-in-view .whatsapp-float:hover {
   .amenities-grid-mini { grid-template-columns: repeat(3, 1fr); gap: 10px; }
 
   /* Blocks */
-  #blocks { 
-    height: auto !important;
-    min-height: 100vh !important;
-    padding: 0;
-  }
-  #blocks > .section { 
-    padding-top: clamp(60px, 8vh, 80px) !important; 
-    padding-bottom: clamp(60px, 8vh, 80px) !important;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .blocks-header {
-    margin-bottom: clamp(24px, 4vh, 32px);
-  }
-  .blocks-title-row { 
-    flex-direction: column; 
-    align-items: center;
-    gap: clamp(12px, 2vh, 16px);
-    text-align: center;
-  }
-  .blocks-heading-wrap .section-title { 
-    white-space: normal !important;
-    text-align: center !important;
-    font-size: clamp(1.8rem, 4vh, 2.4rem) !important;
-  }
-  .blocks-title-row .section-desc {
-    text-align: center !important;
-    font-size: clamp(0.85rem, 1.6vh, 0.95rem) !important;
-    max-width: 100%;
-  }
-  .blocks-content { 
-    flex-direction: column; 
-    gap: clamp(20px, 3vh, 24px);
-  }
-  .blocks-glass-box {
-    padding: clamp(20px, 3vh, 24px);
-  }
-  .blocks-sizes-box { 
-    flex: unset; 
-    width: 100%; 
-    order: -1;
-  }
-  .blocks-grid { 
-    grid-template-columns: repeat(2, 1fr); 
-    gap: clamp(12px, 2vh, 16px);
-  }
-  .block-card {
-    padding: clamp(14px, 2.2vh, 18px) clamp(16px, 2.5vw, 20px);
-    flex-direction: column;
-    text-align: center;
-    gap: clamp(6px, 1vh, 8px);
-  }
-  .block-name {
-    font-size: clamp(0.95rem, 1.8vh, 1.1rem);
-  }
-  .block-status {
-    font-size: clamp(0.58rem, 1.1vh, 0.65rem);
-  }
-  .size-tags { 
-    grid-template-columns: repeat(2, 1fr); 
-    grid-template-rows: repeat(2, 1fr); 
-    gap: clamp(12px, 2vh, 16px);
-    height: auto;
-  }
-  .size-tag {
-    padding: clamp(16px, 2.5vh, 20px) clamp(12px, 2vw, 16px);
-    min-height: clamp(80px, 12vh, 100px);
-  }
-  .size-val {
-    font-size: clamp(1.4rem, 2.8vh, 1.8rem) !important;
-  }
-  .size-unit {
-    font-size: clamp(0.65rem, 1.2vh, 0.75rem) !important;
-  }
+  .blocks-title-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .blocks-heading-wrap .section-title { white-space: normal !important; }
+  .blocks-content { flex-direction: column; gap: 16px; }
+  .blocks-sizes-box { flex: unset; width: 100%; }
+  .blocks-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .size-tags { grid-template-columns: repeat(4, 1fr); grid-template-rows: auto; gap: 10px; }
 
   /* Payment */
   .payment-layout { grid-template-columns: 1fr; gap: 20px; }
@@ -3019,80 +2949,13 @@ body.footer-in-view .whatsapp-float:hover {
   .service-card p {
     font-size: clamp(0.78rem, 1.4vh, 0.85rem);
   }
-  /* Testimonials - optimized for small screens */
-  #testimonials > .section {
-    padding-top: clamp(50px, 7vh, 70px) !important;
-    padding-bottom: clamp(50px, 7vh, 70px) !important;
-  }
-  .testimonials-grid {
-    gap: clamp(14px, 2vh, 20px);
-  }
-  .testimonial-card {
-    padding: clamp(18px, 2.5vh, 24px) clamp(14px, 2vw, 18px);
-  }
-  .testimonial-quote {
-    font-size: clamp(1.6rem, 3.5vh, 2.2rem);
-    margin-bottom: clamp(6px, 1.2vh, 10px);
-  }
-  .testimonial-text {
-    font-size: clamp(0.78rem, 1.4vh, 0.85rem);
-    line-height: 1.55;
-    margin-bottom: clamp(10px, 1.8vh, 16px);
-  }
-  .testimonial-author {
-    padding-top: clamp(6px, 1.2vh, 12px);
-    gap: clamp(8px, 1.2vw, 12px);
-  }
-  .author-avatar {
-    width: clamp(32px, 4.5vh, 40px);
-    height: clamp(32px, 4.5vh, 40px);
-    font-size: clamp(0.6rem, 1.1vh, 0.7rem);
-  }
-  .author-name {
-    font-size: clamp(0.78rem, 1.3vh, 0.85rem);
-  }
-  .author-role {
-    font-size: clamp(0.65rem, 1.1vh, 0.7rem);
-  }
-  .testimonial-stars {
-    font-size: clamp(0.75rem, 1.2vh, 0.85rem);
-  }
   /* Projects */
   .project-plots { grid-template-columns: repeat(2, 1fr); }
   .plot-card { height: 120px; }
   .amenities-grid-mini { grid-template-columns: repeat(2, 1fr); }
-  /* Blocks - optimized for small screens */
-  #blocks > .section {
-    padding-top: clamp(50px, 7vh, 70px) !important;
-    padding-bottom: clamp(50px, 7vh, 70px) !important;
-  }
-  .blocks-grid { 
-    grid-template-columns: 1fr;
-    gap: clamp(10px, 1.5vh, 14px);
-  }
-  .block-card {
-    padding: clamp(12px, 2vh, 16px);
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-  }
-  .block-name {
-    font-size: clamp(0.9rem, 1.6vh, 1rem);
-  }
-  .size-tags { 
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(10px, 1.5vh, 14px);
-  }
-  .size-tag {
-    padding: clamp(14px, 2.2vh, 18px) clamp(10px, 1.5vw, 14px);
-    min-height: clamp(70px, 10vh, 85px);
-  }
-  .size-val {
-    font-size: clamp(1.2rem, 2.4vh, 1.5rem) !important;
-  }
-  .size-unit {
-    font-size: clamp(0.6rem, 1.1vh, 0.7rem) !important;
-  }
+  /* Blocks */
+  .blocks-grid { grid-template-columns: repeat(2, 1fr); }
+  .size-tags { grid-template-columns: repeat(2, 1fr); }
   /* Payment */
   .payment-highlights { grid-template-columns: 1fr !important; }
   .payment-highlight-item { flex-direction: row; text-align: left; gap: 12px; }
