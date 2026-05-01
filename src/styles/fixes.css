@@ -37,13 +37,16 @@ section,
 #services,
 #testimonials,
 #payment,
-#blocks,
-#projects,
 #contact,
-#tour-cta,
 #hero,
 #footer {
   overflow-x: hidden;
+  max-width: 100%;
+}
+#blocks,
+#tour-cta,
+#projects {
+  overflow: visible;
   max-width: 100%;
 }
 
@@ -137,10 +140,8 @@ section,
   50%        { transform: translateY(-16px); opacity: 1;  }
 }
 
-/* 12. TILT CARDS — contain layout so tilt doesn't shift siblings */
+/* 12. TILT CARDS */
 .tilt-card {
-  contain: layout;
-  overflow: hidden;
   transform-origin: center center;
 }
 
@@ -223,23 +224,26 @@ section,
 
   .nav-links {
     display: none;
-    position: absolute;
-    top: calc(100% + 12px);
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(340px, 92vw);
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    background: rgba(7, 14, 26, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
-    backdrop-filter: blur(32px) saturate(1.4);
-    -webkit-backdrop-filter: blur(32px) saturate(1.4);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    padding: 8px;
-    z-index: 999;
-    overflow: hidden;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100dvh !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    background: rgb(5, 10, 20) !important;
+    z-index: 99999 !important;
+    padding: 40px 24px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    overflow-y: auto !important;
   }
 
   .nav-links.open {
@@ -247,23 +251,49 @@ section,
   }
 
   .nav-links a {
-    padding: 12px 16px !important;
-    border-radius: 10px !important;
-    font-size: 0.85rem !important;
-    color: rgba(255, 255, 255, 0.75) !important;
-    width: 100%;
+    padding: 14px 32px !important;
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+    letter-spacing: 2px !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 280px !important;
+    border: none !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
+  .nav-links a.btn.nav-tour-btn,
   .nav-links .nav-tour-btn.btn {
-    margin-top: 4px;
-    width: 100%;
-    justify-content: center;
-    height: 42px !important;
+    display: flex !important;
+    width: 100% !important;
+    max-width: 280px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: 8px !important;
+    height: 48px !important;
+    font-size: 0.85rem !important;
+    background: linear-gradient(135deg, #3d7ec7 0%, #2f69a7 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+    border-radius: 12px !important;
+    padding: 0 24px !important;
   }
 
   .nav-inner {
     position: relative !important;
     width: calc(100% - 32px) !important;
+  }
+
+  /* Hamburger stays on top of overlay */
+  .hamburger {
+    position: relative !important;
+    z-index: 100000 !important;
   }
 }
 
@@ -290,3 +320,69 @@ section,
   letter-spacing: 4px !important;
   font-weight: 600 !important;
 }
+
+/* ================================================================
+   19b. CONTENT-VISIBILITY — skip rendering off-screen sections
+   ================================================================ */
+#about, #ceo, #services, #tour-cta, #projects,
+#blocks, #payment, #testimonials, #contact, #footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
+}
+
+/* ================================================================
+   20. PERFORMANCE — GPU layers, kill expensive repaints
+   ================================================================ */
+
+/* Promote scrolling layer */
+.marquee-track,
+.whatsapp-float,
+#scroll-progress {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Kill backdrop-filter on cards — most expensive scroll repaint cause */
+.service-card,
+.block-card,
+.testimonial-card,
+.payment-card,
+.about-card-inner,
+.project-main,
+.project-amenities,
+.contact-form-wrap,
+.amenity-mini,
+.size-tag,
+.contact-chip,
+.payment-highlight-item,
+.blocks-glass-box,
+.payment-info,
+.ceo-info,
+.about-left,
+.contact-info {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Kill all expensive CSS animations that cause repaints on scroll */
+.ceo-orb-1, .ceo-orb-2, .ceo-orb-3,
+.orb-1, .orb-2, .orb-3 { animation: none !important; opacity: 0 !important; }
+.ceo-spotlight         { animation: none !important; }
+.badge-dot             { animation: none !important; }
+.ceo-live-dot          { animation: none !important; }
+.scroll-line           { animation: none !important; }
+.payment-card-shine    { animation: none !important; }
+.service-icon::after   { animation: none !important; }
+.project-badge         { animation: none !important; box-shadow: none !important; }
+.ceo-initials          { animation: none !important; }
+.testimonial-card::after { animation: none !important; }
+#payment .payment-card::before { animation: none !important; }
+.testimonials-header h2 { animation: none !important; }
+.testimonial-stars     { animation: none !important; filter: none !important; }
+.btn-tour              { animation: none !important; }
+#tour-cta              { animation: none !important; }
+#about .about-right    { animation: none !important; }
+#ceo .ceo-frame        { animation: none !important; }
+.section-label         { animation: hdrDown 0.22s ease both !important; }
+.accent-line           { animation: lineGrow 0.28s ease 0.07s both !important; }
+
