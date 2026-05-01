@@ -9,6 +9,7 @@ body {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+  background: transparent;
 }
 
 /* 2. GLOBAL BOX-SIZING */
@@ -178,11 +179,7 @@ section,
 #ceo.cinematic-section::before,
 #ceo.cinematic-section::after,
 #ceo.cinematic-section.in-view::before,
-#ceo.cinematic-section.in-view::after,
-#blocks.cinematic-section::before,
-#blocks.cinematic-section::after,
-#blocks.cinematic-section.in-view::before,
-#blocks.cinematic-section.in-view::after {
+#ceo.cinematic-section.in-view::after {
   opacity: 0 !important;
   filter: none !important;
   pointer-events: none !important;
@@ -324,7 +321,7 @@ section,
    19b. CONTENT-VISIBILITY — skip rendering off-screen sections
    ================================================================ */
 #about, #ceo, #services, #tour-cta, #projects,
-#blocks, #payment, #testimonials, #contact, #footer {
+#payment, #testimonials, #contact, #footer {
   content-visibility: auto;
   contain-intrinsic-size: 0 600px;
 }
@@ -386,7 +383,6 @@ section,
 
 /* CEO, Projects, Payment, Contact — transparent so Three.js canvas shows */
 #ceo,
-#projects,
 #payment,
 #contact {
   background: transparent !important;
@@ -394,15 +390,21 @@ section,
   -webkit-backdrop-filter: none !important;
 }
 
-/* About, Services, Blocks — same clean dark blur as footer, no shadow no border */
+/* About, Services — solid dark panels */
 #about,
-#services,
-#blocks {
+#services {
   background: linear-gradient(180deg, rgba(7, 14, 26, 0.96) 0%, rgba(12, 21, 38, 0.94) 100%) !important;
   backdrop-filter: blur(40px) saturate(1.8) !important;
   -webkit-backdrop-filter: blur(40px) saturate(1.8) !important;
   box-shadow: none !important;
   border: none !important;
+}
+
+/* Blocks — fully transparent, canvas shows through */
+#blocks {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* ================================================================

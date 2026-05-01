@@ -39,7 +39,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--navy);
+  background: transparent;
   color: var(--white);
   overflow-x: hidden;
   overflow-y: auto;
@@ -50,12 +50,7 @@ body {
 }
 
 .site-fixed-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: var(--navy);
-  min-height: 100%;
+  display: none;
 }
 
 .site-fixed-bg::before {

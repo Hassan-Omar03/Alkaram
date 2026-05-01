@@ -150,7 +150,6 @@ import Layout from '../layouts/Layout.astro';
 
 <!-- ==================== CEO ==================== -->
 <section id="ceo">
-  <canvas id="ceo-canvas"></canvas>
   <div class="section">
     <div class="ceo-grid">
       <div class="ceo-visual">
@@ -279,7 +278,6 @@ import Layout from '../layouts/Layout.astro';
 
 <!-- ==================== PROJECT ==================== -->
 <section id="projects">
-  <canvas id="projects-canvas"></canvas>
   <div class="section">
     <span class="section-label">Our Project</span>
     <h2 class="section-title">Al Jalil Garden Housing Scheme</h2>
@@ -507,7 +505,6 @@ import Layout from '../layouts/Layout.astro';
 
 <!-- ==================== PAYMENT ==================== -->
 <section id="payment">
-  <canvas id="payment-canvas"></canvas>
   <div class="section">
     <div class="payment-layout">
       <div class="payment-info">
@@ -645,7 +642,6 @@ import Layout from '../layouts/Layout.astro';
 
 <!-- ==================== CONTACT ==================== -->
 <section id="contact">
-  <canvas id="contact-canvas"></canvas>
   <div class="section">
     <div class="contact-grid">
       <div class="contact-info">
@@ -1027,11 +1023,12 @@ body.aurora-active .cursor-aurora {
   overflow: visible;
 }
 #hero-canvas {
-  position: absolute;
-  inset: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: -1;
 }
 .hero-overlay {
   position: absolute;
@@ -1689,7 +1686,7 @@ body.aurora-active .cursor-aurora {
 
 /* ===== PROJECTS ===== */
 #projects {
-  background: transparent;
+  background: var(--navy-2);
   position: relative;
 }
 #projects-canvas {
@@ -1954,7 +1951,6 @@ body.aurora-active .cursor-aurora {
 
 /* ===== BLOCKS ===== */
 #blocks {
-  background: linear-gradient(180deg, var(--navy-2) 0%, var(--navy-3) 100%);
   position: relative;
   height: 100vh;
   min-height: 100vh;
@@ -1964,13 +1960,7 @@ body.aurora-active .cursor-aurora {
   padding-top: 130px;
   padding-bottom: 130px;
 }
-#blocks::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(61,126,199,0.2), transparent);
-}
+
 
 /* ── Blocks header ── */
 .blocks-header {
@@ -2278,7 +2268,7 @@ body.aurora-active .cursor-aurora {
   z-index: 0;
 }
 #payment {
-  background: transparent;
+  background: var(--navy-2);
   position: relative;
   overflow: hidden;
   height: 100vh;
@@ -2424,7 +2414,7 @@ body.aurora-active .cursor-aurora {
   z-index: 0;
 }
 #contact {
-  background: transparent;
+  background: var(--navy-2);
   position: relative;
 }
 #contact::before {
@@ -4386,18 +4376,18 @@ body.cursor-link #cursor-ring { width: 44px; height: 44px; border-color: var(--g
    Keep one persistent backdrop visible under all main sections.
    ================================================================ */
 #hero-canvas {
-  position: absolute;
+  position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: -1;
 }
-#projects,
 #about,
-#services,
-#blocks {
+#services {
   background: linear-gradient(180deg, rgba(7, 14, 26, 0.82) 0%, rgba(12, 21, 38, 0.74) 100%) !important;
 }
+
+
 
 #footer {
   background: linear-gradient(180deg, rgba(7, 14, 26, 0.86) 0%, rgba(12, 21, 38, 0.82) 100%) !important;
@@ -4422,8 +4412,6 @@ body.cursor-link #cursor-ring { width: 44px; height: 44px; border-color: var(--g
 
 /* Stronger frosted panels for alternating solid sections */
 #about,
-#contact,
-#projects,
 #services,
 #footer {
   background: linear-gradient(180deg, rgba(7, 14, 26, 0.93) 0%, rgba(12, 21, 38, 0.9) 100%) !important;
@@ -4431,14 +4419,15 @@ body.cursor-link #cursor-ring { width: 44px; height: 44px; border-color: var(--g
   -webkit-backdrop-filter: blur(16px) saturate(1.2);
 }
 
-/* Same dark background as services section */
+/* Projects — fully opaque navy, no canvas bleed */
+#projects {
+  background: var(--navy-2) !important;
+}
 
-#projects,
+/* Payment and Contact — fully opaque navy-2 */
 #payment,
 #contact {
-  background: linear-gradient(180deg, rgba(7, 14, 26, 0.82) 0%, rgba(12, 21, 38, 0.74) 100%) !important;
-  backdrop-filter: blur(10px) saturate(1.1);
-  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+  background: var(--navy-2) !important;
 }
 
 /* Lock payment & testimonials height — must come after background overrides */
@@ -5581,7 +5570,8 @@ body.menu-open { overflow: hidden !important; position: fixed !important; width:
 
   /* WHATSAPP */
   .whatsapp-float { width: clamp(64px,5vh,80px) !important; height: clamp(64px,5vh,80px) !important; }
-}/* ── HERO STATS GAP FIX: 1921px+ ── */
+}
+/* ── HERO STATS GAP FIX: 1921px+ ── */
 @media (min-width: 1921px) {
   .hero-stats { gap: clamp(24px, 2.5vw, 48px) !important; }
   .glass-stat { padding: clamp(14px, 1.8vh, 22px) clamp(20px, 2vw, 32px) !important; }
