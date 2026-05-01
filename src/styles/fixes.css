@@ -1132,6 +1132,8 @@ section,
   .ceo-frame     { width: clamp(300px, 14vw, 400px) !important; height: clamp(360px, 18vw, 480px) !important; }
   .plot-card     { height: clamp(170px, 18vh, 220px) !important; }
   .footer-top    { grid-template-columns: 1.5fr 1fr 1fr 1fr !important; gap: clamp(50px, 4vw, 80px) !important; }
+  .hero-stats    { display: flex !important; align-items: center !important; justify-content: center !important; gap: clamp(24px, 2vw, 40px) !important; }
+  .glass-stat    { padding: clamp(12px, 1.5vh, 20px) clamp(18px, 1.8vw, 30px) !important; }
 }
 
 /* ── 4K / UHD: 2561px+ ── */
@@ -1146,4 +1148,119 @@ section,
   .footer-top    { grid-template-columns: 1.5fr 1fr 1fr 1fr !important; gap: clamp(60px, 3.5vw, 100px) !important; }
   .nav-inner     { height: 80px !important; }
   .nav-logo-img  { width: 140px !important; max-height: 52px !important; }
+}
+
+/* About section mobile overlap fix */
+@media (max-width: 768px) {
+  #about {
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  #about > .section {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: block !important;
+    flex-direction: unset !important;
+    justify-content: unset !important;
+    align-items: unset !important;
+    padding: clamp(48px, 10vw, 68px) clamp(14px, 4vw, 22px) !important;
+  }
+
+  #about .about-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: clamp(22px, 6vw, 34px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: unset !important;
+    align-items: start !important;
+    overflow: visible !important;
+  }
+
+  #about .about-right {
+    order: -1 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    position: static !important;
+    animation: none !important;
+    transform: none !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  #about .about-left {
+    order: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    position: static !important;
+    margin: 0 !important;
+    padding: clamp(22px, 6vw, 30px) clamp(16px, 5vw, 24px) !important;
+    overflow: visible !important;
+  }
+
+  #about .about-card {
+    width: 100% !important;
+    max-width: min(100%, 360px) !important;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    position: static !important;
+    flex: none !important;
+    margin: 0 auto !important;
+  }
+
+  #about .about-card-inner {
+    width: 100% !important;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    position: static !important;
+    flex: none !important;
+    padding: clamp(24px, 7vw, 34px) clamp(18px, 6vw, 28px) !important;
+    transform: none !important;
+  }
+
+  #about .about-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: clamp(10px, 3vw, 14px) !important;
+    width: 100% !important;
+  }
+
+  #about .about-feature {
+    min-width: 0 !important;
+    width: 100% !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+
+  #about .about-feature span {
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+    line-height: 1.35 !important;
+  }
+}
+
+@media (max-width: 390px) {
+  #about .about-features {
+    grid-template-columns: 1fr !important;
+  }
 }

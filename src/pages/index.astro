@@ -5050,6 +5050,60 @@ body.menu-open { overflow: hidden !important; position: fixed !important; width:
   }
 }
 
+/* ── ABOUT SECTION MOBILE OVERLAP FIX ── */
+@media (max-width: 768px) {
+  #about {
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+  #about > .section {
+    height: auto !important;
+    min-height: unset !important;
+    display: block !important;
+    flex-direction: unset !important;
+    justify-content: unset !important;
+    align-items: unset !important;
+  }
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+    min-height: unset !important;
+    align-items: start !important;
+  }
+  .about-right {
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    position: static !important;
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+  .about-card {
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    flex: none !important;
+    position: static !important;
+  }
+  .about-card-inner {
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    flex: none !important;
+    position: static !important;
+    transform: none !important;
+  }
+  .about-left {
+    height: auto !important;
+    min-height: unset !important;
+    position: static !important;
+  }
+}
+
 /* ── 280px: Galaxy Fold closed ── */
 @media (max-width: 280px) {
   .section { padding: 28px 10px 32px !important; }
@@ -5527,7 +5581,12 @@ body.menu-open { overflow: hidden !important; position: fixed !important; width:
 
   /* WHATSAPP */
   .whatsapp-float { width: clamp(64px,5vh,80px) !important; height: clamp(64px,5vh,80px) !important; }
+}/* ── HERO STATS GAP FIX: 1921px+ ── */
+@media (min-width: 1921px) {
+  .hero-stats { gap: clamp(24px, 2.5vw, 48px) !important; }
+  .glass-stat { padding: clamp(14px, 1.8vh, 22px) clamp(20px, 2vw, 32px) !important; }
 }
+
 </style>
 
 
