@@ -290,7 +290,6 @@ section,
     width: calc(100% - 32px) !important;
   }
 
-  /* Hamburger stays on top of overlay */
   .hamburger {
     position: relative !important;
     z-index: 100000 !important;
@@ -357,7 +356,6 @@ section,
 .payment-highlight-item,
 .blocks-glass-box,
 .payment-info,
-.ceo-info,
 .about-left,
 .contact-info {
   backdrop-filter: none !important;
@@ -386,3 +384,766 @@ section,
 .section-label         { animation: hdrDown 0.22s ease both !important; }
 .accent-line           { animation: lineGrow 0.28s ease 0.07s both !important; }
 
+/* CEO, Projects, Payment, Contact — transparent so Three.js canvas shows */
+#ceo,
+#projects,
+#payment,
+#contact {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* About, Services, Blocks — same clean dark blur as footer, no shadow no border */
+#about,
+#services,
+#blocks {
+  background: linear-gradient(180deg, rgba(7, 14, 26, 0.96) 0%, rgba(12, 21, 38, 0.94) 100%) !important;
+  backdrop-filter: blur(40px) saturate(1.8) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(1.8) !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* ================================================================
+   NEW RESPONSIVE BREAKPOINTS — Tablet & Mid-Screen Coverage
+   Covers gaps between existing mobile (768px) and desktop (1025px+)
+   Does NOT touch existing @media (max-width: 768px) or (min-width: 1025px)
+   ================================================================ */
+
+/* ── iPad Portrait / Small Tablet: 769px – 900px ── */
+@media (min-width: 769px) and (max-width: 900px) {
+  .section { padding: clamp(50px, 7vh, 80px) 5% !important; }
+
+  /* Grids → single column */
+  .about-grid { grid-template-columns: 1fr !important; gap: clamp(20px, 3vh, 36px) !important; }
+  .ceo-grid   { grid-template-columns: 1fr !important; gap: clamp(20px, 3vh, 36px) !important; }
+  .contact-grid { grid-template-columns: 1fr !important; gap: clamp(16px, 2.5vh, 28px) !important; }
+  .services-grid { grid-template-columns: repeat(2, 1fr) !important; gap: clamp(12px, 2vh, 20px) !important; }
+  .project-showcase { grid-template-columns: 1fr !important; gap: clamp(16px, 2.5vh, 28px) !important; }
+  .payment-layout { grid-template-columns: 1fr !important; gap: clamp(16px, 2.5vh, 28px) !important; }
+  .testimonials-grid { grid-template-columns: 1fr !important; gap: clamp(14px, 2vh, 24px) !important; }
+  .blocks-grid { grid-template-columns: repeat(4, 1fr) !important; }
+  .footer-top { grid-template-columns: 1fr 1fr !important; gap: clamp(20px, 3vh, 36px) !important; }
+
+  /* Typography */
+  .section-title { font-size: clamp(1.8rem, 4.5vw, 2.6rem) !important; }
+  .section-label { font-size: clamp(0.8rem, 1.8vw, 1rem) !important; }
+  .section-desc  { font-size: clamp(0.84rem, 1.8vw, 0.96rem) !important; }
+
+  /* CEO */
+  .ceo-visual { order: -1; }
+  .ceo-frame  { width: clamp(180px, 28vw, 240px) !important; height: clamp(220px, 34vw, 290px) !important; }
+  .ceo-values { grid-template-columns: 1fr !important; gap: clamp(10px, 1.8vh, 16px) !important; }
+  .ceo-value  { flex-direction: row !important; text-align: left !important; gap: 14px; align-items: center; }
+
+  /* Sections height — auto on small tablets */
+  #about, #ceo, #projects, #contact, #payment, #testimonials, #services {
+    height: auto !important; min-height: unset !important; max-height: none !important;
+    display: block !important;
+  }
+  #ceo { padding-top: clamp(60px, 8vh, 90px) !important; padding-bottom: clamp(60px, 8vh, 90px) !important; }
+
+  /* Contact chips */
+  .contact-chips { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Blocks */
+  .blocks-content { flex-direction: column !important; }
+  .blocks-sizes-box { flex: unset !important; width: 100% !important; }
+  .size-tags { grid-template-columns: repeat(4, 1fr) !important; }
+}
+
+/* ── iPad Landscape / Medium Tablet: 901px – 1024px ── */
+@media (min-width: 901px) and (max-width: 1024px) {
+  .section { padding: clamp(60px, 8vh, 90px) 5% !important; }
+
+  /* Grids */
+  .about-grid { grid-template-columns: 1fr 1fr !important; gap: clamp(24px, 3.5vh, 48px) !important; }
+  .ceo-grid   { grid-template-columns: 1fr !important; gap: clamp(24px, 3.5vh, 40px) !important; }
+  .services-grid { grid-template-columns: repeat(2, 1fr) !important; gap: clamp(14px, 2vh, 22px) !important; }
+  .project-showcase { grid-template-columns: 1fr !important; gap: clamp(20px, 3vh, 32px) !important; }
+  .payment-layout { grid-template-columns: 1fr 1fr !important; gap: clamp(20px, 3vw, 36px) !important; }
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr) !important; gap: clamp(14px, 2vh, 24px) !important; }
+  .contact-grid { grid-template-columns: 1fr 1fr !important; gap: clamp(20px, 3vw, 40px) !important; }
+  .footer-top { grid-template-columns: 1fr 1fr !important; }
+
+  /* Typography */
+  .section-title { font-size: clamp(2rem, 4vw, 2.8rem) !important; }
+  .section-label { font-size: clamp(0.85rem, 1.6vw, 1rem) !important; }
+  .section-desc  { font-size: clamp(0.86rem, 1.6vw, 0.98rem) !important; }
+
+  /* CEO */
+  .ceo-visual { order: -1; }
+  .ceo-frame  { width: clamp(200px, 26vw, 260px) !important; height: clamp(240px, 32vw, 310px) !important; }
+  .ceo-values { grid-template-columns: repeat(3, 1fr) !important; gap: clamp(12px, 2vh, 20px) !important; }
+
+  /* Sections height */
+  #about, #ceo, #projects, #contact, #payment, #testimonials, #services {
+    height: auto !important; min-height: unset !important; max-height: none !important;
+    display: block !important;
+  }
+  #ceo { padding-top: clamp(70px, 9vh, 100px) !important; padding-bottom: clamp(70px, 9vh, 100px) !important; }
+
+  /* Contact chips */
+  .contact-chips { grid-template-columns: repeat(3, 1fr) !important; }
+}
+
+/* ── Small Laptop: 1025px – 1280px ── */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .section { padding: clamp(70px, 9vh, 100px) 5% !important; }
+
+  /* Typography scales with viewport */
+  .section-title { font-size: clamp(2.2rem, 3.8vw, 3.2rem) !important; }
+  .section-label { font-size: clamp(0.88rem, 1.4vw, 1rem) !important; }
+  .section-desc  { font-size: clamp(0.88rem, 1.5vw, 1rem) !important; }
+
+  /* Grids */
+  .services-grid { grid-template-columns: repeat(4, 1fr) !important; gap: clamp(12px, 1.4vw, 18px) !important; }
+  .about-grid    { gap: clamp(30px, 4vw, 60px) !important; }
+  .ceo-grid      { gap: clamp(28px, 3.5vw, 52px) !important; }
+  .payment-layout { gap: clamp(20px, 2.8vw, 40px) !important; }
+  .contact-grid  { gap: clamp(24px, 3vw, 48px) !important; }
+  .project-showcase { gap: clamp(20px, 2.5vw, 36px) !important; }
+
+  /* CEO frame */
+  .ceo-frame { width: clamp(220px, 22vw, 280px) !important; height: clamp(270px, 28vw, 340px) !important; }
+  .ceo-values { gap: clamp(12px, 1.8vh, 22px) !important; }
+
+  /* Sections — keep 100vh but scale content */
+  #ceo > .section {
+    padding-top: clamp(80px, 10vh, 110px) !important;
+    padding-bottom: clamp(80px, 10vh, 110px) !important;
+  }
+  #projects > .section {
+    padding-top: clamp(60px, 8vh, 90px) !important;
+    padding-bottom: clamp(60px, 8vh, 90px) !important;
+  }
+  #contact > .section {
+    padding-top: clamp(80px, 10vh, 110px) !important;
+    padding-bottom: clamp(70px, 9vh, 100px) !important;
+  }
+
+  /* Plot cards */
+  .plot-card { height: clamp(110px, 15vh, 160px) !important; }
+  .plot-card-num { font-size: clamp(1.8rem, 3vh, 2.6rem) !important; }
+
+  /* Amenities */
+  .amenities-grid-mini { gap: clamp(10px, 1.4vh, 18px) !important; }
+  .amenity-mini { padding: clamp(8px, 1.2vh, 12px) clamp(6px, 0.8vw, 10px) !important; }
+}
+
+/* ── Standard Laptop: 1281px – 1440px ── */
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .section { padding: clamp(80px, 10vh, 110px) 5% !important; }
+
+  .section-title { font-size: clamp(2.4rem, 3.6vw, 3.4rem) !important; }
+  .section-desc  { font-size: clamp(0.9rem, 1.4vw, 1.02rem) !important; }
+
+  .services-grid { gap: clamp(14px, 1.5vw, 20px) !important; }
+  .about-grid    { gap: clamp(40px, 5vw, 72px) !important; }
+  .ceo-grid      { gap: clamp(36px, 4vw, 60px) !important; }
+
+  .ceo-frame { width: clamp(240px, 20vw, 290px) !important; height: clamp(290px, 25vw, 350px) !important; }
+
+  .plot-card { height: clamp(120px, 16vh, 170px) !important; }
+}
+
+/* ── Large Screen: 1441px – 1920px ── */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .section { padding: clamp(90px, 11vh, 130px) 5% !important; max-width: 1500px !important; }
+
+  .section-title { font-size: clamp(2.8rem, 3.4vw, 4rem) !important; }
+  .section-label { font-size: clamp(0.95rem, 1.2vw, 1.1rem) !important; }
+  .section-desc  { font-size: clamp(0.95rem, 1.2vw, 1.08rem) !important; }
+
+  .services-grid { gap: clamp(16px, 1.4vw, 24px) !important; }
+  .about-grid    { gap: clamp(50px, 5.5vw, 90px) !important; }
+  .ceo-grid      { gap: clamp(44px, 4.5vw, 72px) !important; }
+  .project-showcase { gap: clamp(28px, 3vw, 48px) !important; }
+
+  .ceo-frame { width: clamp(260px, 18vw, 320px) !important; height: clamp(310px, 22vw, 380px) !important; }
+
+  .plot-card { height: clamp(140px, 17vh, 190px) !important; }
+  .plot-card-num { font-size: clamp(2rem, 3.2vh, 3rem) !important; }
+
+  .amenities-grid-mini { gap: clamp(14px, 1.6vh, 22px) !important; }
+}
+
+/* ── Ultra-Wide: 1921px+ ── */
+@media (min-width: 1921px) {
+  .section { padding: clamp(100px, 12vh, 150px) 5% !important; max-width: 1700px !important; }
+
+  .section-title { font-size: clamp(3rem, 3vw, 4.4rem) !important; }
+  .section-label { font-size: clamp(1rem, 1vw, 1.2rem) !important; }
+  .section-desc  { font-size: clamp(1rem, 1.1vw, 1.15rem) !important; }
+
+  .services-grid { gap: clamp(18px, 1.2vw, 28px) !important; }
+  .about-grid    { gap: clamp(60px, 5vw, 100px) !important; }
+  .ceo-grid      { gap: clamp(50px, 4vw, 80px) !important; }
+
+  .ceo-frame { width: clamp(280px, 16vw, 360px) !important; height: clamp(340px, 20vw, 420px) !important; }
+
+  .plot-card { height: clamp(160px, 18vh, 210px) !important; }
+  .footer-top { grid-template-columns: 1.5fr 1fr 1fr 1fr !important; gap: clamp(40px, 4vw, 70px) !important; }
+}
+
+/* ================================================================
+   iPHONE XR / iPhone 11 / Similar (390px–430px wide, tall screens)
+   Fixes hero section vertical spacing
+   ================================================================ */
+@media (max-width: 430px) and (min-height: 800px) {
+  #hero {
+    min-height: 100svh !important;
+    height: 100svh !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+  }
+
+  /* Override the max(72px,9vh) / max(50px,6vh) from @media max-width:768px */
+  .hero-content {
+    padding-top: 50px !important;
+    padding-bottom: 6px !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+    width: 100% !important;
+  }
+
+  .hero-badge {
+    font-size: 0.38rem !important;
+    padding: 4px 9px !important;
+    margin-bottom: 8px !important;
+    letter-spacing: 0.5px !important;
+    gap: 5px !important;
+    max-width: calc(100vw - 36px) !important;
+  }
+
+  .hero-title {
+    font-size: clamp(1.65rem, 7vw, 2.1rem) !important;
+    line-height: 1.1 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .hero-desc {
+    font-size: 0.78rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 12px !important;
+    padding: 0 2px !important;
+  }
+
+  .hero-btns {
+    gap: 8px !important;
+    margin-bottom: 12px !important;
+    width: 100% !important;
+  }
+  .hero-btns .btn {
+    font-size: 0.62rem !important;
+    padding: 10px 4px !important;
+  }
+
+  .hero-stats { gap: 6px !important; width: 100% !important; }
+  .glass-stat  { flex: 1 !important; padding: 8px 4px !important; }
+  .stat-num    { font-size: 1.1rem !important; }
+  .stat-label  { font-size: 0.38rem !important; letter-spacing: 0.2px !important; }
+
+  .hero-marquee {
+    height: 32px !important;
+    bottom: 0 !important;
+    position: absolute !important;
+  }
+  .marquee-track span { font-size: 0.52rem !important; padding: 0 8px !important; }
+}
+
+/* ================================================================
+   CEO — equal width cards on iPhone XR / narrow mobile
+   ================================================================ */
+@media (max-width: 430px) {
+  .ceo-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+  .ceo-visual,
+  .ceo-info {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  .ceo-frame {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 200px !important;
+    box-sizing: border-box !important;
+  }
+  .ceo-info {
+    padding: 20px 16px !important;
+  }
+  #ceo > .section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    overflow: hidden !important;
+  }
+}
+
+/* ================================================================
+   iPAD PRO 11" — 834px wide (portrait & landscape)
+   ================================================================ */
+@media (min-width: 810px) and (max-width: 900px) {
+  .section {
+    padding: clamp(60px, 8vh, 90px) 5% !important;
+  }
+
+  /* Hero */
+  #hero {
+    min-height: 100svh !important;
+    height: 100svh !important;
+    padding: 0 !important;
+  }
+  .hero-content {
+    padding: clamp(80px, 10vh, 110px) 6% clamp(40px, 5vh, 60px) !important;
+  }
+  .hero-title {
+    font-size: clamp(2rem, 4.5vw, 2.8rem) !important;
+    margin-bottom: clamp(10px, 1.5vh, 18px) !important;
+  }
+  .hero-desc {
+    font-size: clamp(0.88rem, 1.6vh, 1rem) !important;
+    margin-bottom: clamp(18px, 2.5vh, 28px) !important;
+  }
+  .hero-btns { gap: 12px !important; margin-bottom: clamp(18px, 2.5vh, 28px) !important; }
+  .hero-btns .btn { font-size: 0.78rem !important; padding: 14px 20px !important; }
+  .stat-num { font-size: 1.6rem !important; }
+  .stat-label { font-size: 0.58rem !important; }
+
+  /* Sections — auto height */
+  #about, #ceo, #projects, #contact, #payment, #testimonials, #services {
+    height: auto !important; min-height: unset !important; max-height: none !important;
+    display: block !important;
+  }
+
+  /* About */
+  .about-grid { grid-template-columns: 1fr !important; gap: clamp(24px, 3vh, 40px) !important; }
+  .about-right { order: -1; justify-content: center !important; }
+  .about-card { width: 100% !important; max-width: 420px !important; margin: 0 auto !important; }
+  .about-card-inner { padding: 32px 28px !important; }
+  .about-features { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+
+  /* CEO */
+  .ceo-grid { grid-template-columns: 1fr !important; gap: clamp(20px, 3vh, 32px) !important; }
+  .ceo-visual { order: -1; }
+  .ceo-frame { width: 100% !important; max-width: 100% !important; height: clamp(220px, 28vh, 280px) !important; }
+  .ceo-info { width: 100% !important; padding: clamp(24px, 3vh, 36px) !important; }
+  .ceo-values { grid-template-columns: repeat(3, 1fr) !important; gap: 12px !important; margin-top: 20px !important; }
+  .ceo-value { padding: 16px 12px !important; }
+  #ceo { padding-top: clamp(60px, 8vh, 90px) !important; padding-bottom: clamp(60px, 8vh, 90px) !important; }
+
+  /* Services */
+  .services-grid { grid-template-columns: repeat(2, 1fr) !important; gap: clamp(14px, 2vh, 22px) !important; }
+  #services { min-height: unset !important; height: auto !important; display: block !important; }
+  #services > .section { padding-top: clamp(60px, 8vh, 90px) !important; padding-bottom: clamp(60px, 8vh, 90px) !important; }
+
+  /* Projects */
+  .project-showcase { grid-template-columns: 1fr !important; gap: clamp(20px, 3vh, 32px) !important; }
+  .project-plots { grid-template-columns: repeat(3, 1fr) !important; }
+  .plot-card { height: clamp(120px, 16vh, 160px) !important; }
+  .amenities-grid-mini { grid-template-columns: repeat(3, 1fr) !important; gap: 12px !important; }
+
+  /* Blocks */
+  .blocks-content { flex-direction: column !important; gap: 16px !important; }
+  .blocks-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 10px !important; }
+  .blocks-sizes-box { flex: unset !important; width: 100% !important; }
+  .size-tags { grid-template-columns: repeat(4, 1fr) !important; }
+
+  /* Payment */
+  .payment-layout { grid-template-columns: 1fr !important; gap: clamp(20px, 3vh, 32px) !important; }
+  .payment-highlights { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
+  #payment { height: auto !important; min-height: unset !important; max-height: none !important; display: block !important; }
+  #payment > .section { padding-top: clamp(60px, 8vh, 90px) !important; padding-bottom: clamp(60px, 8vh, 90px) !important; }
+
+  /* Testimonials */
+  .testimonials-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  #testimonials { height: auto !important; min-height: unset !important; max-height: none !important; display: block !important; }
+  #testimonials > .section { padding-top: clamp(50px, 7vh, 80px) !important; padding-bottom: clamp(50px, 7vh, 80px) !important; }
+
+  /* Contact */
+  .contact-grid { grid-template-columns: 1fr !important; gap: clamp(20px, 3vh, 32px) !important; }
+  .contact-chips { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+  #contact { height: auto !important; min-height: unset !important; max-height: none !important; display: block !important; }
+
+  /* Footer */
+  .footer-top { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
+
+  /* Section typography */
+  .section-title { font-size: clamp(2rem, 4.5vw, 2.8rem) !important; }
+  .section-label { font-size: clamp(0.85rem, 1.6vw, 1rem) !important; }
+  .section-desc  { font-size: clamp(0.88rem, 1.6vw, 1rem) !important; }
+}
+
+/* ================================================================
+   iPAD PRO 12.9" — 1024px wide (portrait)
+   ================================================================ */
+@media (min-width: 1000px) and (max-width: 1080px) {
+  .section {
+    padding: clamp(70px, 9vh, 100px) 5% !important;
+  }
+
+  /* Hero */
+  #hero {
+    min-height: 100svh !important;
+    height: 100svh !important;
+    padding: 0 !important;
+  }
+  .hero-content {
+    padding: clamp(90px, 11vh, 120px) 6% clamp(50px, 6vh, 70px) !important;
+  }
+  .hero-title {
+    font-size: clamp(2.2rem, 4vw, 3rem) !important;
+    margin-bottom: clamp(12px, 1.6vh, 20px) !important;
+  }
+  .hero-desc {
+    font-size: clamp(0.9rem, 1.6vh, 1.02rem) !important;
+    margin-bottom: clamp(20px, 2.8vh, 32px) !important;
+  }
+  .hero-btns { gap: 14px !important; }
+  .stat-num { font-size: 1.8rem !important; }
+
+  /* Sections */
+  #about, #ceo, #projects, #contact, #payment, #testimonials, #services {
+    height: auto !important; min-height: unset !important; max-height: none !important;
+    display: block !important;
+  }
+
+  /* About */
+  .about-grid { grid-template-columns: 1.1fr 0.9fr !important; gap: clamp(30px, 4vw, 56px) !important; }
+  .about-card { width: 100% !important; }
+  .about-features { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+
+  /* CEO */
+  .ceo-grid { grid-template-columns: 0.8fr 1.2fr !important; gap: clamp(28px, 3.5vw, 52px) !important; }
+  .ceo-frame { width: clamp(220px, 24vw, 280px) !important; height: clamp(270px, 30vw, 340px) !important; }
+  .ceo-values { grid-template-columns: repeat(3, 1fr) !important; gap: clamp(12px, 1.8vh, 20px) !important; }
+  #ceo { padding-top: clamp(70px, 9vh, 100px) !important; padding-bottom: clamp(70px, 9vh, 100px) !important; }
+
+  /* Services */
+  .services-grid { grid-template-columns: repeat(2, 1fr) !important; gap: clamp(16px, 2vw, 24px) !important; }
+  #services { min-height: unset !important; height: auto !important; display: block !important; }
+  #services > .section { padding-top: clamp(70px, 9vh, 100px) !important; padding-bottom: clamp(70px, 9vh, 100px) !important; }
+
+  /* Projects */
+  .project-showcase { grid-template-columns: 1.2fr 0.8fr !important; gap: clamp(24px, 3vw, 40px) !important; }
+  .project-plots { grid-template-columns: repeat(5, 1fr) !important; }
+  .plot-card { height: clamp(130px, 17vh, 180px) !important; }
+  .amenities-grid-mini { grid-template-columns: repeat(3, 1fr) !important; gap: clamp(10px, 1.5vh, 18px) !important; }
+
+  /* Blocks */
+  .blocks-grid { grid-template-columns: repeat(4, 1fr) !important; }
+  .blocks-sizes-box { flex: 0 0 200px !important; }
+
+  /* Payment */
+  .payment-layout { grid-template-columns: 1fr 1fr !important; gap: clamp(22px, 3vw, 40px) !important; }
+  .payment-highlights { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
+  #payment { height: auto !important; min-height: unset !important; max-height: none !important; display: block !important; }
+  #payment > .section { padding-top: clamp(70px, 9vh, 100px) !important; padding-bottom: clamp(70px, 9vh, 100px) !important; }
+
+  /* Testimonials */
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr) !important; gap: clamp(16px, 2vw, 24px) !important; }
+  #testimonials { height: auto !important; min-height: unset !important; max-height: none !important; display: block !important; }
+  #testimonials > .section { padding-top: clamp(60px, 8vh, 90px) !important; padding-bottom: clamp(60px, 8vh, 90px) !important; }
+
+  /* Contact */
+  .contact-grid { grid-template-columns: 1fr 1fr !important; gap: clamp(24px, 3vw, 48px) !important; }
+  .contact-chips { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
+  #contact { height: auto !important; min-height: unset !important; max-height: none !important; display: block !important; }
+
+  /* Footer */
+  .footer-top { grid-template-columns: 1.4fr 1fr 1fr 1fr !important; gap: 32px !important; }
+
+  /* Typography */
+  .section-title { font-size: clamp(2.2rem, 4vw, 3rem) !important; }
+  .section-label { font-size: clamp(0.88rem, 1.5vw, 1rem) !important; }
+  .section-desc  { font-size: clamp(0.9rem, 1.5vw, 1rem) !important; }
+}
+
+/* ================================================================
+   iPAD PRO — Landscape modes
+   11" landscape: ~1194px  |  12.9" landscape: ~1366px
+   ================================================================ */
+@media (min-width: 1100px) and (max-width: 1400px) and (max-height: 1024px) {
+  .section { padding: clamp(60px, 8vh, 90px) 5% !important; }
+
+  .hero-title { font-size: clamp(2.2rem, 3.8vw, 3.2rem) !important; }
+  .hero-desc  { font-size: clamp(0.9rem, 1.5vh, 1rem) !important; }
+
+  /* All sections auto height in landscape */
+  #about, #ceo, #projects, #contact, #payment, #testimonials, #services {
+    height: auto !important; min-height: unset !important; max-height: none !important;
+    display: block !important;
+  }
+
+  .services-grid { grid-template-columns: repeat(4, 1fr) !important; gap: clamp(12px, 1.4vw, 20px) !important; }
+  .about-grid    { grid-template-columns: 1.1fr 0.9fr !important; gap: clamp(32px, 4vw, 60px) !important; }
+  .ceo-grid      { grid-template-columns: 0.7fr 1.3fr !important; gap: clamp(28px, 3.5vw, 52px) !important; }
+  .project-showcase { grid-template-columns: 1.3fr 0.7fr !important; gap: clamp(24px, 3vw, 40px) !important; }
+  .payment-layout { grid-template-columns: 1fr 1fr !important; gap: clamp(20px, 2.8vw, 40px) !important; }
+  .testimonials-grid { grid-template-columns: repeat(3, 1fr) !important; gap: clamp(14px, 2vw, 24px) !important; }
+  .contact-grid  { grid-template-columns: 1fr 1fr !important; gap: clamp(24px, 3vw, 48px) !important; }
+
+  #payment { height: auto !important; min-height: unset !important; max-height: none !important; display: block !important; }
+  #testimonials { height: auto !important; min-height: unset !important; max-height: none !important; display: block !important; }
+
+  .ceo-frame { width: clamp(220px, 20vw, 270px) !important; height: clamp(260px, 25vw, 320px) !important; }
+  .plot-card { height: clamp(120px, 15vh, 160px) !important; }
+  .footer-top { grid-template-columns: 1.4fr 1fr 1fr 1fr !important; }
+}
+
+/* ================================================================
+   UNIVERSAL RESPONSIVE SYSTEM
+   Covers: 280px → 320px → 375px → 430px → 540px → 600px → 768px
+           → 900px → 1024px → 1280px → 1440px → 1920px → 2560px+
+   Rule: ONLY adds new rules, never overrides existing blocks above.
+   ================================================================ */
+
+/* ── Tiny phones: Galaxy Fold closed / 280px ── */
+@media (max-width: 280px) {
+  .section { padding: 28px 10px 32px !important; }
+  .section-title { font-size: clamp(1.1rem, 9vw, 1.4rem) !important; }
+  .section-label { font-size: 0.6rem !important; letter-spacing: 1.5px !important; }
+  .section-desc  { font-size: 0.68rem !important; }
+
+  #hero { min-height: 100svh !important; height: 100svh !important; padding: 0 !important; }
+  .hero-content { padding: 40px 10px 4px !important; }
+  .hero-badge   { font-size: 0.26rem !important; padding: 3px 6px !important; letter-spacing: 0.2px !important; max-width: calc(100vw - 20px) !important; }
+  .hero-title   { font-size: clamp(1.1rem, 9vw, 1.4rem) !important; line-height: 1.1 !important; margin-bottom: 5px !important; }
+  .hero-desc    { font-size: 0.62rem !important; margin-bottom: 8px !important; }
+  .hero-btns    { gap: 5px !important; margin-bottom: 8px !important; }
+  .hero-btns .btn { font-size: 0.46rem !important; padding: 8px 2px !important; }
+  .glass-stat   { padding: 5px 2px !important; }
+  .stat-num     { font-size: 0.82rem !important; }
+  .stat-label   { font-size: 0.26rem !important; }
+  .hero-marquee { height: 24px !important; }
+  .marquee-track span { font-size: 0.38rem !important; padding: 0 4px !important; }
+
+  .nav-inner    { width: calc(100% - 20px) !important; height: 50px !important; padding: 0 8px !important; }
+  .nav-logo-img { width: 52px !important; }
+
+  .ceo-grid, .about-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .ceo-frame  { width: 100% !important; max-width: 100% !important; height: 140px !important; }
+  .ceo-info   { padding: 12px 10px !important; overflow: hidden !important; }
+  .ceo-values { grid-template-columns: 1fr !important; gap: 6px !important; }
+  .ceo-value  { padding: 8px 6px !important; flex-direction: row !important; gap: 8px !important; }
+  .ceo-value h4 { font-size: 0.7rem !important; }
+  .ceo-value p  { font-size: 0.6rem !important; }
+  .value-icon   { width: 30px !important; height: 30px !important; flex-shrink: 0 !important; }
+
+  .about-card-inner { padding: 12px 10px !important; }
+  .about-logo-img   { width: 80px !important; }
+
+  .services-grid { grid-template-columns: 1fr !important; gap: 8px !important; }
+  .service-card  { padding: 14px 10px !important; }
+  .service-card h3 { font-size: 0.82rem !important; }
+  .service-card p  { font-size: 0.64rem !important; }
+
+  .project-plots { grid-template-columns: repeat(2, 1fr) !important; gap: 6px !important; }
+  .plot-card     { height: 90px !important; }
+  .plot-card-num { font-size: 1.3rem !important; }
+  .amenities-grid-mini { grid-template-columns: repeat(2, 1fr) !important; gap: 6px !important; }
+
+  .blocks-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 5px !important; }
+  .size-tags   { grid-template-columns: repeat(2, 1fr) !important; gap: 5px !important; }
+
+  .payment-highlights { grid-template-columns: 1fr !important; }
+  .testimonials-grid  { grid-template-columns: 1fr !important; }
+  .contact-chips      { grid-template-columns: 1fr 1fr !important; gap: 5px !important; }
+  .contact-form-wrap  { padding: 12px 10px !important; }
+  .footer-top         { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .footer-inner       { padding: 20px 10px 16px !important; }
+  .whatsapp-float     { width: 40px !important; height: 40px !important; right: 8px !important; }
+
+  #about, #ceo, #services, #projects, #blocks, #payment, #testimonials, #contact {
+    height: auto !important; min-height: unset !important; max-height: none !important; display: block !important;
+  }
+  #ceo > .section { padding-left: 10px !important; padding-right: 10px !important; overflow: hidden !important; }
+}
+
+/* ── iPhone SE 1st gen / narrow Android: 321px – 359px ── */
+@media (min-width: 321px) and (max-width: 359px) {
+  .section { padding: 32px 12px 36px !important; }
+  .section-title { font-size: clamp(1.25rem, 8.5vw, 1.6rem) !important; }
+  .section-desc  { font-size: 0.72rem !important; }
+
+  #hero { min-height: 100svh !important; height: 100svh !important; padding: 0 !important; }
+  .hero-content { padding: 44px 12px 4px !important; }
+  .hero-badge   { font-size: 0.28rem !important; padding: 3px 7px !important; max-width: calc(100vw - 24px) !important; }
+  .hero-title   { font-size: clamp(1.25rem, 8.5vw, 1.6rem) !important; }
+  .hero-desc    { font-size: 0.66rem !important; }
+  .hero-btns .btn { font-size: 0.5rem !important; padding: 9px 3px !important; }
+  .stat-num     { font-size: 0.9rem !important; }
+  .stat-label   { font-size: 0.28rem !important; }
+
+  .ceo-frame  { width: 100% !important; max-width: 100% !important; height: 150px !important; }
+  .ceo-info   { padding: 14px 12px !important; overflow: hidden !important; }
+  .ceo-values { grid-template-columns: 1fr !important; gap: 7px !important; }
+  .ceo-value  { padding: 9px 8px !important; flex-direction: row !important; gap: 9px !important; }
+
+  #about, #ceo, #services, #projects, #blocks, #payment, #testimonials, #contact {
+    height: auto !important; min-height: unset !important; max-height: none !important; display: block !important;
+  }
+  #ceo > .section { padding-left: 12px !important; padding-right: 12px !important; overflow: hidden !important; }
+}
+
+/* ── iPhone SE 2nd/3rd gen: 375px (already covered by max-width:430px above,
+      but add CEO-specific overflow fix) ── */
+@media (min-width: 360px) and (max-width: 390px) {
+  .ceo-grid   { grid-template-columns: 1fr !important; gap: 14px !important; width: 100% !important; }
+  .ceo-visual, .ceo-info { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; overflow: hidden !important; }
+  .ceo-frame  { width: 100% !important; max-width: 100% !important; height: 180px !important; }
+  .ceo-info   { padding: 18px 14px !important; }
+  #ceo > .section { padding-left: 14px !important; padding-right: 14px !important; overflow: hidden !important; }
+  #about, #ceo, #services, #projects, #blocks, #payment, #testimonials, #contact {
+    height: auto !important; min-height: unset !important; max-height: none !important; display: block !important;
+  }
+}
+
+/* ── Mid-size phones: 431px – 539px ── */
+@media (min-width: 431px) and (max-width: 539px) {
+  .section { padding: 48px 16px 52px !important; }
+  .section-title { font-size: clamp(1.5rem, 6.5vw, 2rem) !important; }
+  .section-desc  { font-size: 0.84rem !important; }
+
+  #hero { min-height: 100svh !important; height: 100svh !important; padding: 0 !important; }
+  .hero-content { padding: 56px 16px 8px !important; }
+  .hero-title   { font-size: clamp(1.5rem, 6.5vw, 2rem) !important; }
+  .hero-desc    { font-size: 0.8rem !important; }
+  .hero-btns .btn { font-size: 0.64rem !important; padding: 11px 6px !important; }
+  .stat-num     { font-size: 1.2rem !important; }
+  .stat-label   { font-size: 0.44rem !important; }
+
+  .ceo-grid   { grid-template-columns: 1fr !important; gap: 16px !important; width: 100% !important; }
+  .ceo-visual, .ceo-info { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; overflow: hidden !important; }
+  .ceo-frame  { width: 100% !important; max-width: 100% !important; height: 200px !important; }
+  .ceo-info   { padding: 20px 16px !important; }
+  .ceo-values { grid-template-columns: 1fr !important; gap: 10px !important; }
+  .ceo-value  { flex-direction: row !important; gap: 12px !important; padding: 12px 10px !important; }
+  #ceo > .section { padding-left: 16px !important; padding-right: 16px !important; overflow: hidden !important; }
+
+  .services-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+  .project-plots { grid-template-columns: repeat(3, 1fr) !important; }
+  .plot-card     { height: 120px !important; }
+  .amenities-grid-mini { grid-template-columns: repeat(2, 1fr) !important; }
+  .blocks-grid   { grid-template-columns: repeat(2, 1fr) !important; }
+  .size-tags     { grid-template-columns: repeat(4, 1fr) !important; }
+  .payment-highlights { grid-template-columns: 1fr 1fr !important; }
+  .contact-chips { grid-template-columns: 1fr 1fr !important; }
+  .footer-top    { grid-template-columns: 1fr !important; }
+
+  #about, #ceo, #services, #projects, #blocks, #payment, #testimonials, #contact {
+    height: auto !important; min-height: unset !important; max-height: none !important; display: block !important;
+  }
+}
+
+/* ── Large phones / small tablets: 540px – 600px ── */
+@media (min-width: 540px) and (max-width: 600px) {
+  .section { padding: 52px 18px 56px !important; }
+  .section-title { font-size: clamp(1.6rem, 5.5vw, 2.2rem) !important; }
+
+  #hero { min-height: 100svh !important; height: 100svh !important; padding: 0 !important; }
+  .hero-content { padding: 60px 18px 10px !important; }
+  .hero-title   { font-size: clamp(1.6rem, 5.5vw, 2.2rem) !important; }
+  .hero-btns .btn { font-size: 0.68rem !important; }
+  .stat-num     { font-size: 1.3rem !important; }
+
+  .ceo-grid   { grid-template-columns: 1fr !important; gap: 16px !important; width: 100% !important; }
+  .ceo-visual, .ceo-info { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; overflow: hidden !important; }
+  .ceo-frame  { width: 100% !important; max-width: 100% !important; height: 210px !important; }
+  .ceo-info   { padding: 22px 18px !important; }
+  .ceo-values { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
+  #ceo > .section { padding-left: 18px !important; padding-right: 18px !important; overflow: hidden !important; }
+
+  .services-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
+  .project-plots { grid-template-columns: repeat(3, 1fr) !important; }
+  .plot-card     { height: 130px !important; }
+  .amenities-grid-mini { grid-template-columns: repeat(3, 1fr) !important; }
+  .blocks-grid   { grid-template-columns: repeat(2, 1fr) !important; }
+  .payment-highlights { grid-template-columns: 1fr 1fr !important; }
+  .contact-chips { grid-template-columns: repeat(2, 1fr) !important; }
+  .footer-top    { grid-template-columns: 1fr 1fr !important; }
+
+  #about, #ceo, #services, #projects, #blocks, #payment, #testimonials, #contact {
+    height: auto !important; min-height: unset !important; max-height: none !important; display: block !important;
+  }
+}
+
+/* ── Phablets / small tablets: 601px – 768px ── */
+@media (min-width: 601px) and (max-width: 768px) {
+  .section { padding: 56px 20px 60px !important; }
+  .section-title { font-size: clamp(1.7rem, 5vw, 2.4rem) !important; }
+
+  #hero { min-height: 100svh !important; height: 100svh !important; padding: 0 !important; }
+  .hero-content { padding: 70px 20px 12px !important; }
+  .hero-title   { font-size: clamp(1.7rem, 5vw, 2.4rem) !important; }
+  .hero-btns .btn { font-size: 0.72rem !important; padding: 12px 10px !important; }
+  .stat-num     { font-size: 1.4rem !important; }
+
+  .ceo-grid   { grid-template-columns: 1fr !important; gap: 18px !important; width: 100% !important; }
+  .ceo-visual, .ceo-info { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; overflow: hidden !important; }
+  .ceo-frame  { width: 100% !important; max-width: 100% !important; height: 220px !important; }
+  .ceo-info   { padding: 24px 20px !important; }
+  .ceo-values { grid-template-columns: repeat(3, 1fr) !important; gap: 12px !important; }
+  #ceo > .section { padding-left: 20px !important; padding-right: 20px !important; overflow: hidden !important; }
+
+  .services-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+  .project-plots { grid-template-columns: repeat(3, 1fr) !important; }
+  .plot-card     { height: 130px !important; }
+  .amenities-grid-mini { grid-template-columns: repeat(3, 1fr) !important; }
+  .blocks-grid   { grid-template-columns: repeat(2, 1fr) !important; }
+  .payment-highlights { grid-template-columns: 1fr 1fr !important; }
+  .contact-chips { grid-template-columns: repeat(2, 1fr) !important; }
+  .footer-top    { grid-template-columns: 1fr 1fr !important; }
+
+  #about, #ceo, #services, #projects, #blocks, #payment, #testimonials, #contact {
+    height: auto !important; min-height: unset !important; max-height: none !important; display: block !important;
+  }
+}
+
+/* ── Section vh heights for desktop (1025px+) — additive only ── */
+@media (min-width: 1025px) {
+  #about, #ceo, #projects, #payment, #testimonials, #contact {
+    min-height: 100vh !important;
+  }
+  #services {
+    min-height: 100vh !important;
+  }
+  #blocks {
+    min-height: auto !important;
+  }
+}
+
+/* ── 2K / QHD: 1921px – 2560px ── */
+@media (min-width: 1921px) and (max-width: 2560px) {
+  .section { padding: clamp(110px, 12vh, 160px) 5% !important; max-width: 1800px !important; }
+  .section-title { font-size: clamp(3.2rem, 2.8vw, 4.8rem) !important; }
+  .section-label { font-size: clamp(1rem, 0.9vw, 1.3rem) !important; }
+  .section-desc  { font-size: clamp(1rem, 1vw, 1.2rem) !important; }
+  .services-grid { gap: clamp(20px, 1.1vw, 32px) !important; }
+  .ceo-frame     { width: clamp(300px, 14vw, 400px) !important; height: clamp(360px, 18vw, 480px) !important; }
+  .plot-card     { height: clamp(170px, 18vh, 220px) !important; }
+  .footer-top    { grid-template-columns: 1.5fr 1fr 1fr 1fr !important; gap: clamp(50px, 4vw, 80px) !important; }
+}
+
+/* ── 4K / UHD: 2561px+ ── */
+@media (min-width: 2561px) {
+  .section { padding: clamp(130px, 13vh, 200px) 5% !important; max-width: 2200px !important; }
+  .section-title { font-size: clamp(3.6rem, 2.4vw, 5.5rem) !important; }
+  .section-label { font-size: clamp(1.1rem, 0.8vw, 1.5rem) !important; }
+  .section-desc  { font-size: clamp(1.1rem, 0.9vw, 1.35rem) !important; }
+  .services-grid { gap: clamp(24px, 1vw, 40px) !important; }
+  .ceo-frame     { width: clamp(340px, 12vw, 480px) !important; height: clamp(400px, 15vw, 560px) !important; }
+  .plot-card     { height: clamp(190px, 17vh, 250px) !important; }
+  .footer-top    { grid-template-columns: 1.5fr 1fr 1fr 1fr !important; gap: clamp(60px, 3.5vw, 100px) !important; }
+  .nav-inner     { height: 80px !important; }
+  .nav-logo-img  { width: 140px !important; max-height: 52px !important; }
+}
