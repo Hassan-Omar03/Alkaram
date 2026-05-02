@@ -1973,8 +1973,9 @@ body.aurora-active .cursor-aurora {
 }
 .blocks-title-row {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  justify-content:center;
   gap: 40px;
   width: 100%;
 }
@@ -1986,7 +1987,7 @@ body.aurora-active .cursor-aurora {
   font-size: clamp(1.4rem, 2.5vw, 2.4rem) !important;
 }
 .blocks-title-row .section-desc {
-  text-align: left !important;
+  text-align: center !important;
   margin: 0 !important;
   max-width: none !important;
   flex: 1;
@@ -2000,7 +2001,7 @@ body.aurora-active .cursor-aurora {
   text-align: left !important;
 }
 .blocks-heading-wrap .accent-line {
-  margin: 0 !important;
+  margin: auto !important;
 }
 .blocks-desc {
   flex: 1;
@@ -3871,7 +3872,7 @@ body.footer-in-view .whatsapp-float:hover {
   /* Global */
   .section { padding: 36px 12px 40px !important; }
   .section-title { font-size: clamp(1.4rem, 8vw, 1.8rem) !important; }
-  .section-label { font-size: 0.7rem !important; letter-spacing: 2px !important; }
+  .section-label { font-size: 0.7rem !important; letter-spacing: 2px !important; margin:auto; }
   .section-desc  { font-size: 0.76rem !important; }
 
   /* About / section 2 boxes */
@@ -5090,6 +5091,9 @@ body.menu-open { overflow: hidden !important; position: fixed !important; width:
     height: auto !important;
     min-height: unset !important;
     position: static !important;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
   }
 }
 

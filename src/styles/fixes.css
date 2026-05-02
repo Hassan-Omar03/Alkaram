@@ -9,7 +9,7 @@ body {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  background: transparent;
+  background: #070e1a;
 }
 
 /* 2. GLOBAL BOX-SIZING */
@@ -381,16 +381,7 @@ section,
 .section-label         { animation: hdrDown 0.22s ease both !important; }
 .accent-line           { animation: lineGrow 0.28s ease 0.07s both !important; }
 
-/* CEO, Projects, Payment, Contact — transparent so Three.js canvas shows */
-#ceo,
-#payment,
-#contact {
-  background: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-/* About, Services — solid dark panels */
+/* Solid dark background — only about and services */
 #about,
 #services {
   background: linear-gradient(180deg, rgba(7, 14, 26, 0.96) 0%, rgba(12, 21, 38, 0.94) 100%) !important;
@@ -400,11 +391,19 @@ section,
   border: none !important;
 }
 
-/* Blocks — fully transparent, canvas shows through */
-#blocks {
+/* Transparent — canvas shows through */
+#hero,
+#ceo,
+#tour-cta,
+#projects,
+#blocks,
+#payment,
+#testimonials,
+#contact {
   background: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
+  isolation: isolate;
 }
 
 /* ================================================================
